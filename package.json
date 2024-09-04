@@ -30,5 +30,10 @@
     "prettier": "3.3.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@typescript-eslint/typescript-estree": {
+      "typescript": "<5.5.0"
+    }
   }
 }

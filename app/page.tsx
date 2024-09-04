@@ -1,3 +1,6 @@
+"use client";
+
+import RepoData from "@/components/repo-data";
 import { Badge } from "@/components/ui/badge";
 import {
   Breadcrumb,
@@ -56,7 +59,6 @@ import {
   ShoppingCart,
   Users2,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 export const description =
@@ -254,6 +256,7 @@ export default function Dashboard() {
           </DropdownMenu>
         </header>
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+          <RepoData />
           <Tabs defaultValue="all">
             <div className="flex items-center">
               <TabsList>

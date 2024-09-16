@@ -7,7 +7,8 @@ import Link from "next/link";
 export default function TxsData() {
   const { isPending, error, data } = useQuery({
     queryKey: ["txs"],
-    queryFn: () => fetch("/txs.json").then((res) => res.json()),
+    queryFn: () =>
+      fetch("http://localhost:4000/api/v1/txs").then((res) => res.json()),
   });
 
   if (isPending) return "Loading...";

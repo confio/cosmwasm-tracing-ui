@@ -86,9 +86,9 @@ export default function TxData({ txId, spanId }: TxDataProps) {
   } = useQuery({
     queryKey: [`tx-${txId}`],
     queryFn: () =>
-      fetch("/txs.json")
+      fetch(`http://localhost:4000/api/v1/txs?traceID=${txId}`)
         .then((res) => res.json())
-        .then((obj) => obj.txs.filter((tx: Tx) => tx._source.traceID === txId)),
+        .then((json) => json.txs),
   });
 
   if (isPending) return "Loading...";

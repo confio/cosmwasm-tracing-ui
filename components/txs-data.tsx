@@ -8,7 +8,9 @@ export default function TxsData() {
   const { isPending, error, data } = useQuery({
     queryKey: ["txs"],
     queryFn: () =>
-      fetch("http://localhost:4000/api/v1/txs").then((res) => res.json()),
+      fetch(
+        `http://localhost:4000/api/v1/txs?operationName=execute_tx&tags=${encodeURIComponent('{"tx":"*Bank(Send*"}')}`,
+      ).then((res) => res.json()),
   });
 
   if (isPending) return "Loading...";

@@ -28,40 +28,57 @@ mermaid.initialize({
   `,
 });
 
-const replacer = (tag: string) =>
-  ({
-    "&lt;": "<",
-    "&gt;": ">",
-    "&amp;": "&",
-    "&#39;": "'",
-    "&quot;": '"',
-  })[tag] ?? "";
+const htmlReplacer = {
+  regex: /(&lt;|&gt;|&amp;|&#39;|&quot;)/g,
+  fn: (tag: string) =>
+    ({ "&lt;": "<", "&gt;": ">", "&amp;": "&", "&#39;": "'", "&quot;": '"' })[
+      tag
+    ] ?? "",
+};
 
 export default function Mermaid({ chart }: { chart: string }) {
-  const [isBrowserRendering, setIsBrowserRendering] = useState(false);
+  const [renderStage, setRenderStage] = useState<
+    "server" | "browser" | "mermaid"
+  >("server");
 
   useEffect(() => {
-    if (isBrowserRendering) {
-      mermaid.contentLoaded();
+    setRenderStage("browser");
+  }, []);
 
-      setTimeout(() => {
-        const elems = Array.from(
-          document.getElementsByClassName("messageText"),
-        ) as HTMLElement[];
-
-        for (const elem of elems) {
-          if (elem.textContent?.startsWith("<")) {
-            elem.innerHTML = elem.innerHTML.replace(
-              /(&lt;|&gt;|&amp;|&#39;|&quot;)/g,
-              replacer,
-            );
-          }
-        }
-      }, 100);
-    } else {
-      setIsBrowserRendering(true);
+  useEffect(() => {
+    if (renderStage !== "browser") {
+      return;
     }
-  }, [isBrowserRendering]);
 
-  return isBrowserRendering ? <div className="mermaid">{chart}</div> : null;
+    mermaid.contentLoaded();
+
+    const interval = setInterval(() => {
+      const msgs = Array.from(
+        document.getElementsByClassName("messageText"),
+      ) as HTMLElement[];
+
+      if (!msgs.length) {
+        return;
+      }
+
+      for (const msg of msgs) {
+        if (msg.textContent?.startsWith("<")) {
+          msg.innerHTML = msg.innerHTML.replace(
+            htmlReplacer.regex,
+            htmlReplacer.fn,
+          );
+        }
+      }
+
+      setRenderStage("mermaid");
+    });
+
+    return () => clearInterval(interval);
+  }, [renderStage]);
+
+  return renderStage !== "server" ? (
+    <div className={cn("mermaid", renderStage !== "mermaid" && "hidden")}>
+      {chart}
+    </div>
+  ) : null;
 }

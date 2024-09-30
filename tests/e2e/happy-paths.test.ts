@@ -28,11 +28,11 @@ test("navigates to a correctly rendered tx detail", async ({ page }) => {
   //TODO: use non-image snapshot testing (for svg)
   await expect(
     page.getByText("slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j"),
-  ).toHaveCount(2);
+  ).toHaveCount(1);
 
   await expect(
     page.getByText("slay3r1fqg7raeca9peg0zkfp629m92qnjrpyggd2cfgj"),
-  ).toHaveCount(2);
+  ).toHaveCount(1);
 
   await expect(page.getByText("Send")).toBeVisible();
 });

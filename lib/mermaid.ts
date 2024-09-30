@@ -1,3 +1,5 @@
+import { getAddressType } from "./chain";
+
 type TreeNode = {
   id: string;
   parentId: string | null;
@@ -88,8 +90,27 @@ export function sequenceDiagramFromSpans(spans: any) {
 
     console.log({ tx, sender, recipient });
 
+    chart += `\n${getActorBox(sender)}`;
+    chart += `\n${getActorBox(recipient)}`;
+
     chart += `\n${sender}->>+${recipient}: <a href="/txs/${msgSendSpan._source.traceID}/${msgSendSpan._source.spanID}">🏦 Send</a>`;
   }
 
   return chart;
 }
+
+const getActorBox = (address: string) => {
+  switch (getAddressType(address)) {
+    case "account": {
+      return `actor ${address}`;
+    }
+    case "contract": {
+      return `participant ${address} as 📜 ${address}`;
+    }
+    case "validator": {
+      return `participant ${address} as 📋 ${address}`;
+    }
+    default:
+      return "";
+  }
+};

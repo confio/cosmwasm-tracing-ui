@@ -1,11 +1,5 @@
 "use client";
 
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardPortal,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 import mermaid from "mermaid";
 import { useEffect, useState } from "react";
 

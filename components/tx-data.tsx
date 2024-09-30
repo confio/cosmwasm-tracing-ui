@@ -1,9 +1,8 @@
 "use client";
 
+import { useTx } from "@/hooks/api";
 import { sequenceDiagramFromSpans } from "@/lib/mermaid";
-import { Tx, TxSchema } from "@/types/txs";
-import { useQuery } from "@tanstack/react-query";
-import { z } from "zod";
+import { Tx } from "@/types/txs";
 import Mermaid from "./mermaid";
 
 type TxDataProps = {
@@ -12,19 +11,10 @@ type TxDataProps = {
 };
 
 export default function TxData({ txId, spanId }: TxDataProps) {
-  const { isPending, error, data } = useQuery({
-    queryKey: [`tx-${txId}`],
-    queryFn: () =>
-      fetch(`http://localhost:4000/api/v1/txs?traceID=${txId}`)
-        .then((res) => res.json())
-        .then((json) => json.txs),
-  });
+  const { isPending, isFetching, error, data: spans } = useTx(txId);
 
   if (isPending) return "Loading...";
-
   if (error) return "An error has occurred: " + error.message;
-
-  const spans: Readonly<Array<Tx>> = z.array(TxSchema).parse(data);
 
   const mermaidChart = sequenceDiagramFromSpans(spans);
 
@@ -32,7 +22,7 @@ export default function TxData({ txId, spanId }: TxDataProps) {
 
   return (
     <div>
-      <Mermaid chart={mermaidChart} />
+      {!isFetching ? <Mermaid chart={mermaidChart} /> : null}
       {span ? (
         <pre>
           {JSON.stringify(

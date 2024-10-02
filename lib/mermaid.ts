@@ -88,7 +88,7 @@ export function sequenceDiagramFromSpans(spans: any) {
 
     console.log({ tx, sender, recipient });
 
-    chart += `\n${sender}->>+${recipient}: Send`;
+    chart += `\n${sender}->>+${recipient}: <a href="/txs/${msgSendSpan._source.traceID}/${msgSendSpan._source.spanID}">🏦 Send</a>`;
   }
 
   return chart;

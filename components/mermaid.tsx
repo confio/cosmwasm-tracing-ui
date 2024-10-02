@@ -1,11 +1,5 @@
 "use client";
 
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardPortal,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 import mermaid from "mermaid";
 import { useEffect, useState } from "react";
 
@@ -61,12 +55,36 @@ mermaid.initialize({
   fontFamily: "Fira Code",
 });
 
+const replacer = (tag: string) =>
+  ({
+    "&lt;": "<",
+    "&gt;": ">",
+    "&amp;": "&",
+    "&#39;": "'",
+    "&quot;": '"',
+  })[tag] ?? "";
+
 export default function Mermaid({ chart }: { chart: string }) {
   const [isBrowserRendering, setIsBrowserRendering] = useState(false);
 
   useEffect(() => {
     if (isBrowserRendering) {
       mermaid.contentLoaded();
+
+      setTimeout(() => {
+        const elems = Array.from(
+          document.getElementsByClassName("messageText"),
+        ) as HTMLElement[];
+
+        for (const elem of elems) {
+          if (elem.textContent?.startsWith("<")) {
+            elem.innerHTML = elem.innerHTML.replace(
+              /(&lt;|&gt;|&amp;|&#39;|&quot;)/g,
+              replacer,
+            );
+          }
+        }
+      }, 100);
     } else {
       setIsBrowserRendering(true);
     }

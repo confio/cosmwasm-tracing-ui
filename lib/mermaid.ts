@@ -1,25 +1,18 @@
+import { Tx } from "@/types/txs";
 import { getAddressType } from "./chain";
 
 type TreeNode = {
   id: string;
   parentId: string | null;
   children: Set<TreeNode>;
-  span: any;
+  span: Tx;
 };
 
-export function flowchartFromSpans(spans: any) {
+export function flowchartFromSpans(spans: Readonly<Array<Tx>>) {
   const spanParentMap = new Map<string, string | null>();
 
   for (const span of spans) {
-    const parentRef = span._source.references.find(
-      (ref: any) => ref.refType === "CHILD_OF",
-    );
-
-    if (parentRef) {
-      spanParentMap.set(span._source.spanID, parentRef.spanID);
-    } else {
-      spanParentMap.set(span._source.spanID, null);
-    }
+    spanParentMap.set(span.spanId, span.parentSpanId);
   }
 
   const spanNodes: Array<TreeNode> = Array.from(spanParentMap).map(
@@ -27,7 +20,7 @@ export function flowchartFromSpans(spans: any) {
       id,
       parentId,
       children: new Set(),
-      span: spans.find((span: any) => span._source.spanID === id),
+      span: spans.find((span) => span.spanId === id)!,
     }),
   );
 
@@ -58,42 +51,36 @@ export function flowchartFromSpans(spans: any) {
 
   for (const node of sortedSpanNodes) {
     for (const child of Array.from(node.children)) {
-      chart += `\n${node.id}[${node.span._source.operationName}] --> ${child.id}[${child.span._source.operationName}]`;
+      chart += `\n${node.id}[${node.span.operationName}] --> ${child.id}[${child.span.operationName}]`;
     }
   }
 
   for (const node of sortedSpanNodes) {
-    chart += `\nclick ${node.id} "/txs/${node.span._source.traceID}/${node.id}"`;
+    chart += `\nclick ${node.id} "/txs/${node.span.traceId}/${node.id}"`;
   }
-
-  console.log({ chart, spans });
 
   return chart;
 }
 
-export function sequenceDiagramFromSpans(spans: any) {
+export function sequenceDiagramFromSpans(spans: Readonly<Array<Tx>>) {
   let chart = "sequenceDiagram";
 
-  const msgSendSpan = spans.find((span: any) =>
-    span._source.tags.find(
-      (tag: any) => tag.key === "tx" && tag.value.includes("Bank(Send"),
-    ),
-  );
+  for (const span of spans) {
+    const tx = span.tags.get("tx");
 
-  if (msgSendSpan) {
-    const tx = msgSendSpan._source.tags.find(
-      (tag: any) => tag.key === "tx",
-    ).value;
+    if (!tx || !tx.includes("Bank(Send")) {
+      continue;
+    }
 
-    const sender = tx.match(/sender: (\w+)/)[1];
-    const recipient = tx.match(/recipient: (\w+)/)[1];
-
-    console.log({ tx, sender, recipient });
+    const sender = tx.match(/sender: (\w+)/)?.[1] ?? "";
+    const recipient = tx.match(/recipient: (\w+)/)?.[1] ?? "";
 
     chart += `\n${getActorBox(sender)}`;
     chart += `\n${getActorBox(recipient)}`;
 
-    chart += `\n${sender}->>+${recipient}: <a href="/txs/${msgSendSpan._source.traceID}/${msgSendSpan._source.spanID}">🏦 Send</a>`;
+    chart += `\n${sender}->>+${recipient}: <a href="/txs/${span.traceId}/${span.spanId}">🏦 Send</a>`;
+
+    break;
   }
 
   return chart;

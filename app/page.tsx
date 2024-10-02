@@ -52,9 +52,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-export const description =
-  "An products dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. It displays a list of products in a table with actions.";
-
 export default function Dashboard() {
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">

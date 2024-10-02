@@ -1,94 +1,84 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import mermaid from "mermaid";
 import { useEffect, useState } from "react";
 
 mermaid.initialize({
   startOnLoad: true,
-  theme: "default",
   securityLevel: "loose",
+  sequence: { mirrorActors: false },
+  theme: "base",
+  themeVariables: {
+    background: "#fff",
+    mainBkg: "#fff",
+    primaryColor: "#fff",
+    textColor: "#171717",
+    lineColor: "#171717",
+    actorBorder: "#171717",
+  },
   themeCSS: `
-    g.classGroup rect {
-      fill: #282a36;
-      stroke: #6272a4;
-    } 
-    g.classGroup text {
-      fill: #f8f8f2;
+    .actor {
+      stroke-width: 2px;
     }
-    g.classGroup line {
-      stroke: #f8f8f2;
-      stroke-width: 0.5;
+
+    .messageText a {
+      text-decoration: underline;
     }
-    .classLabel .box {
-      stroke: #21222c;
-      stroke-width: 3;
-      fill: #21222c;
-      opacity: 1;
-    }
-    .classLabel .label {
-      fill: #f1fa8c;
-    }
-    .relation {
-      stroke: #ff79c6;
-      stroke-width: 1;
-    }
-    #compositionStart, #compositionEnd {
-      fill: #bd93f9;
-      stroke: #bd93f9;
-      stroke-width: 1;
-    }
-    #aggregationEnd, #aggregationStart {
-      fill: #21222c;
-      stroke: #50fa7b;
-      stroke-width: 1;
-    }
-    #dependencyStart, #dependencyEnd {
-      fill: #00bcd4;
-      stroke: #00bcd4;
-      stroke-width: 1;
-    } 
-    #extensionStart, #extensionEnd {
-      fill: #f8f8f2;
-      stroke: #f8f8f2;
-      stroke-width: 1;
-    }`,
-  fontFamily: "Fira Code",
+  `,
 });
 
-const replacer = (tag: string) =>
-  ({
-    "&lt;": "<",
-    "&gt;": ">",
-    "&amp;": "&",
-    "&#39;": "'",
-    "&quot;": '"',
-  })[tag] ?? "";
+const htmlReplacer = {
+  regex: /(&lt;|&gt;|&amp;|&#39;|&quot;)/g,
+  fn: (tag: string) =>
+    ({ "&lt;": "<", "&gt;": ">", "&amp;": "&", "&#39;": "'", "&quot;": '"' })[
+      tag
+    ] ?? "",
+};
 
 export default function Mermaid({ chart }: { chart: string }) {
-  const [isBrowserRendering, setIsBrowserRendering] = useState(false);
+  const [renderStage, setRenderStage] = useState<
+    "server" | "browser" | "mermaid"
+  >("server");
 
   useEffect(() => {
-    if (isBrowserRendering) {
-      mermaid.contentLoaded();
+    setRenderStage("browser");
+  }, []);
 
-      setTimeout(() => {
-        const elems = Array.from(
-          document.getElementsByClassName("messageText"),
-        ) as HTMLElement[];
-
-        for (const elem of elems) {
-          if (elem.textContent?.startsWith("<")) {
-            elem.innerHTML = elem.innerHTML.replace(
-              /(&lt;|&gt;|&amp;|&#39;|&quot;)/g,
-              replacer,
-            );
-          }
-        }
-      }, 100);
-    } else {
-      setIsBrowserRendering(true);
+  useEffect(() => {
+    if (renderStage !== "browser") {
+      return;
     }
-  }, [isBrowserRendering]);
 
-  return isBrowserRendering ? <div className="mermaid">{chart}</div> : null;
+    mermaid.contentLoaded();
+
+    const interval = setInterval(() => {
+      const msgs = Array.from(
+        document.getElementsByClassName("messageText"),
+      ) as HTMLElement[];
+
+      if (!msgs.length) {
+        return;
+      }
+
+      for (const msg of msgs) {
+        if (msg.textContent?.startsWith("<")) {
+          msg.innerHTML = msg.innerHTML.replace(
+            htmlReplacer.regex,
+            htmlReplacer.fn,
+          );
+        }
+      }
+
+      setRenderStage("mermaid");
+    });
+
+    return () => clearInterval(interval);
+  }, [renderStage]);
+
+  return renderStage !== "server" ? (
+    <div className={cn("mermaid", renderStage !== "mermaid" && "hidden")}>
+      {chart}
+    </div>
+  ) : null;
 }

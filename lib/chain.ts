@@ -1,8 +1,10 @@
 //TODO - query from chain
-export function getAddressType(_address: string) {
-  if (Math.random() < 0.5) {
-    return "account";
+export function getAddressType(address: string) {
+  const unprefixedAddress = address.slice(7);
+
+  if (unprefixedAddress.includes("i") || unprefixedAddress.includes("u")) {
+    return "validator";
   }
 
-  return Math.random() < 0.5 ? "contract" : "validator";
+  return unprefixedAddress.includes("a") ? "account" : "contract";
 }

@@ -56,7 +56,7 @@ export function flowchartFromSpans(spans: Readonly<Array<Tx>>) {
   }
 
   for (const node of sortedSpanNodes) {
-    chart += `\nclick ${node.id} "/txs/${node.span.traceId}/${node.id}"`;
+    chart += `\nclick ${node.id} "/${node.span.traceId}/${node.id}"`;
   }
 
   return chart;
@@ -78,7 +78,7 @@ export function sequenceDiagramFromSpans(spans: Readonly<Array<Tx>>) {
     chart += `\n${getActorBox(sender)}`;
     chart += `\n${getActorBox(recipient)}`;
 
-    chart += `\n${sender}->>+${recipient}: <a href="/txs/${span.traceId}/${span.spanId}">🏦 Send</a>`;
+    chart += `\n${sender}->>+${recipient}: <a href="/${span.traceId}/${span.spanId}">🏦 Send</a>`;
 
     break;
   }

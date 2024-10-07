@@ -13,12 +13,9 @@ test("navigates to a correctly rendered tx detail", async ({ page }) => {
 
   //Navigate to Tx list
   await page.goto("http://localhost:3000");
-  await page.getByRole("button", { name: "find" }).click();
 
   //Navigate to Tx detail
-  await page
-    .getByRole("link", { name: "f3f101d12e4b41e05dfd3bcc2aa7e206" })
-    .click();
+  await page.getByText("f3f101d12e4b41e05dfd3bcc2aa7e206").click();
 
   await expect(
     page.getByText("transaction f3f101d12e4b41e05dfd3bcc2aa7e206"),

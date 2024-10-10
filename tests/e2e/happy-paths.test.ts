@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import txs from "../../public/txs.json";
+import txs from "../mocks/data/txs.json";
 
 test("navigates to a correctly rendered tx detail", async ({ page }) => {
   //Mock API

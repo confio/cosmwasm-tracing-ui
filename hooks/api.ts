@@ -1,5 +1,4 @@
-"use client";
-
+import { env } from "@/lib/env";
 import { Tx, TxSchema } from "@/types/txs";
 import {
   keepPreviousData,
@@ -7,9 +6,6 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { z } from "zod";
-
-//TODO - use an envfile
-const API_URL = "http://localhost:4000/api/v1";
 
 export const useTxs = (operationName?: string, tags?: Map<string, string>) => {
   const tagsObj = tags ? Object.fromEntries(tags.entries()) : undefined;
@@ -25,7 +21,9 @@ export const useTxs = (operationName?: string, tags?: Map<string, string>) => {
   return useQuery<Readonly<Array<Tx>>>({
     queryKey: ["txs", { operationName, tags: tagsObj }],
     queryFn: () =>
-      fetch(`${API_URL}/txs${params.size ? `?${params.toString()}` : ""}`)
+      fetch(
+        `${env.NEXT_PUBLIC_API_URL}/txs${params.size ? `?${params.toString()}` : ""}`,
+      )
         .then((res) => res.json())
         .then(({ txs }) => z.array(TxSchema).parse(txs)),
     placeholderData: keepPreviousData,
@@ -38,7 +36,7 @@ export const useTx = (id: string) => {
   return useQuery<Readonly<Array<Tx>>>({
     queryKey: ["tx", id],
     queryFn: () =>
-      fetch(`${API_URL}/txs?traceID=${id}`)
+      fetch(`${env.NEXT_PUBLIC_API_URL}/txs?traceID=${id}`)
         .then((res) => res.json())
         .then(({ txs }) => z.array(TxSchema).parse(txs)),
     placeholderData: () => {

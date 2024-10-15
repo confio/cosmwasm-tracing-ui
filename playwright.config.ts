@@ -75,5 +75,6 @@ export default defineConfig({
     command: "npm run build && npm run start",
     url: "http://127.0.0.1:3000",
     reuseExistingServer: !process.env.CI,
+    env: { NEXT_PUBLIC_API_URL: "http://localhost:4000/api/v1" },
   },
 });

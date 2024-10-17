@@ -1,547 +1,1532 @@
 {
   "txs": [
     {
-      "_index": "jaeger-span-2024-09-16",
-      "_id": "6-JK-5EBBKVn7oZLpIzh",
-      "_score": 9.826375,
-      "_ignored": ["logs.fields.value"],
-      "_source": {
-        "traceID": "f3f101d12e4b41e05dfd3bcc2aa7e206",
-        "spanID": "81791f1c332c735b",
-        "flags": 1,
-        "operationName": "execute_tx",
-        "references": [
-          {
-            "refType": "CHILD_OF",
-            "traceID": "f3f101d12e4b41e05dfd3bcc2aa7e206",
-            "spanID": "5ad708f9af3c1a32"
-          }
-        ],
-        "startTime": 1726497857394452,
-        "startTimeMillis": 1726497857394,
-        "duration": 439,
-        "tags": [
-          {
-            "key": "thread.id",
-            "type": "int64",
-            "value": "31"
-          },
-          {
-            "key": "idle_ns",
-            "type": "int64",
-            "value": "24292"
-          },
-          {
-            "key": "tx",
-            "type": "string",
-            "value": "Signed(SignedTx { msgs: [Bank(Send { sender: slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j, recipient: slay3r1fqg7raeca9peg0zkfp629m92qnjrpyggd2cfgj, amount: [Coin { 7890 \"uslay\" }] })], signer: slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j, signing_info: SigningInfo { message_hash: Binary(e7291ade2da0e95241a6b00522e2699558628f0492ac5d8bba44e98170a318e9), sequence: 1, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(ff0fdc05decc90450ffed02f545b9d25f65845b79ffb781cf70a051942e8ec3e3bb2e8ff8fd2a2222ac678da1762c01895e2c58d6b5aa7720beb6c242232792a) }, fee: FeeInfo { fee: Some(Coin { 2500 \"uslay\" }), gas_limit: 100000 }, timeout_height: None })"
-          },
-          {
-            "key": "code.filepath",
-            "type": "string",
-            "value": "packages/app/src/app.rs"
-          },
-          {
-            "key": "tx_hash",
-            "type": "string",
-            "value": "49340B6264F980CC31127320E6FADDBB05FB0BED3C895079E04FE643066EB00C"
-          },
-          {
-            "key": "height",
-            "type": "string",
-            "value": "173"
-          },
-          {
-            "key": "code.lineno",
-            "type": "int64",
-            "value": "293"
-          },
-          {
-            "key": "busy_ns",
-            "type": "int64",
-            "value": "414667"
-          },
-          {
-            "key": "code.namespace",
-            "type": "string",
-            "value": "layer_app::app"
-          },
-          {
-            "key": "otel.library.name",
-            "type": "string",
-            "value": "opentelemetry-jaeger"
-          },
-          {
-            "key": "otel.library.version",
-            "type": "string",
-            "value": "0.18.0"
-          },
-          {
-            "key": "internal.span.format",
-            "type": "string",
-            "value": "jaeger"
-          }
-        ],
-        "logs": [
-          {
-            "timestamp": 1726497857394884,
-            "fields": [
-              {
-                "key": "level",
-                "type": "string",
-                "value": "DEBUG"
-              },
-              {
-                "key": "target",
-                "type": "string",
-                "value": "layer_app::app"
-              },
-              {
-                "key": "success",
-                "type": "string",
-                "value": "TxResponse { data: [Bank(Send)], events: [[Event { ty: \"transfer\", attributes: [Attribute { key: \"recipient\", value: \"slay3r1fqg7raeca9peg0zkfp629m92qnjrpyggd2cfgj\" }, Attribute { key: \"sender\", value: \"slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j\" }, Attribute { key: \"amount\", value: \"7890uslay\" }] }]] }"
-              },
-              {
-                "key": "code.filepath",
-                "type": "string",
-                "value": "packages/app/src/app.rs"
-              },
-              {
-                "key": "code.namespace",
-                "type": "string",
-                "value": "layer_app::app"
-              },
-              {
-                "key": "code.lineno",
-                "type": "int64",
-                "value": "364"
-              },
-              {
-                "key": "event",
-                "type": "string",
-                "value": "Tx success"
-              }
-            ]
-          }
-        ],
-        "process": {
-          "serviceName": "slay3rd",
+      "traceId": "d9ac77568024c6fe607b957b92dab853",
+      "startTime": 1729004914715857,
+      "spans": [
+        {
+          "traceId": "d9ac77568024c6fe607b957b92dab853",
+          "spanId": "ad31a5a77d4ccc2b",
+          "parentSpanId": null,
+          "operationName": "abci_finalize_block",
           "tags": [
-            {
-              "key": "service.name",
-              "type": "string",
-              "value": "slay3rd"
-            }
-          ]
+            ["busy_ns", "1267916"],
+            ["code.lineno", "200"],
+            ["height", "3113"],
+            [
+              "block_hash",
+              "9EC411D3E07F1686EF2191361F066D264345862BBA17D9CA68B5D86CBE638133"
+            ],
+            ["code.filepath", "app/slay3rd/src/app.rs"],
+            ["code.namespace", "slay3rd::app"],
+            ["idle_ns", "25000"],
+            ["thread.id", "31"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914715857,
+          "duration": 1294
+        },
+        {
+          "traceId": "d9ac77568024c6fe607b957b92dab853",
+          "spanId": "2b99b108833e861c",
+          "parentSpanId": "ad31a5a77d4ccc2b",
+          "operationName": "finalize_block",
+          "tags": [
+            ["thread.id", "31"],
+            ["idle_ns", "16875"],
+            ["code.namespace", "layer_app::app"],
+            ["height", "3113"],
+            ["block.time", "2024-10-15T15:08:34.404145671+00:00"],
+            ["code.lineno", "377"],
+            ["txs", "1"],
+            ["busy_ns", "1066458"],
+            ["block.nanos", "1729004914404145671"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914716033,
+          "duration": 1079
+        },
+        {
+          "traceId": "d9ac77568024c6fe607b957b92dab853",
+          "spanId": "d50e575d1690524f",
+          "parentSpanId": "2b99b108833e861c",
+          "operationName": "execute_tx",
+          "tags": [
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["code.lineno", "293"],
+            ["code.namespace", "layer_app::app"],
+            ["thread.id", "31"],
+            ["idle_ns", "39791"],
+            ["height", "3113"],
+            [
+              "tx",
+              "Signed(SignedTx { msgs: [Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1y6v4dtfpu5zatqgv8u7cnfwrg9cvr3chvqkv0a, amount: [Coin { 2000000 \"uslay\" }] })], signer: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, signing_info: SigningInfo { message_hash: Binary(d9ae9aaf3f10fc313687841be664a5a9a611b82041a3f04a67eb84b989070c33), sequence: 24, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(dd9aa876d6a98259ab343f114628df0b11e1be49ced13dc9cf477222983a88eb452960b36bb79c6210c987717505495ca35beb0ba012e6244aef4a313970b500) }, fee: FeeInfo { fee: Some(Coin { 667 \"uslay\" }), gas_limit: 26676 }, timeout_height: None })"
+            ],
+            ["busy_ns", "848417"],
+            [
+              "tx_hash",
+              "4ABCBB1B35A9733515A5F12112DE9AE63A51B6725462FCCD10EC2E54DF711AE5"
+            ],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914716107,
+          "duration": 887
+        },
+        {
+          "traceId": "d9ac77568024c6fe607b957b92dab853",
+          "spanId": "4a8565cde275763d",
+          "parentSpanId": "d50e575d1690524f",
+          "operationName": "auth.validate_tx",
+          "tags": [
+            ["code.namespace", "layer_app::auth::keeper"],
+            ["thread.id", "31"],
+            ["code.lineno", "71"],
+            ["validate_sig", "true"],
+            ["busy_ns", "728792"],
+            ["code.filepath", "packages/app/src/auth/keeper.rs"],
+            ["idle_ns", "3958"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914716149,
+          "duration": 732
+        },
+        {
+          "traceId": "d9ac77568024c6fe607b957b92dab853",
+          "spanId": "3f848163d4868d32",
+          "parentSpanId": "4a8565cde275763d",
+          "operationName": "validate_signature",
+          "tags": [
+            ["code.lineno", "29"],
+            ["thread.id", "31"],
+            ["busy_ns", "558042"],
+            ["idle_ns", "3625"],
+            ["code.namespace", "layer_std::pubkey"],
+            ["code.filepath", "packages/std/src/pubkey.rs"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914716201,
+          "duration": 563
+        },
+        {
+          "traceId": "d9ac77568024c6fe607b957b92dab853",
+          "spanId": "8876c1326b980f91",
+          "parentSpanId": "4a8565cde275763d",
+          "operationName": "transfer",
+          "tags": [
+            ["busy_ns", "55708"],
+            ["thread.id", "31"],
+            ["code.lineno", "354"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["to_address", "layer1qurswpc8qurswpc8qurswpc8qurswpc8r336vn"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["amount", "667uslay,"],
+            ["idle_ns", "10208"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914716805,
+          "duration": 67
+        },
+        {
+          "traceId": "d9ac77568024c6fe607b957b92dab853",
+          "spanId": "8e9d2334dee21b31",
+          "parentSpanId": "d50e575d1690524f",
+          "operationName": "sm.process_msg",
+          "tags": [
+            ["thread.id", "31"],
+            [
+              "success",
+              "[Event { ty: \"transfer\", attributes: [Attribute { key: \"recipient\", value: \"layer1y6v4dtfpu5zatqgv8u7cnfwrg9cvr3chvqkv0a\" }, Attribute { key: \"sender\", value: \"layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug\" }, Attribute { key: \"amount\", value: \"2000000uslay\" }] }]"
+            ],
+            [
+              "msg",
+              "Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1y6v4dtfpu5zatqgv8u7cnfwrg9cvr3chvqkv0a, amount: [Coin { 2000000 \"uslay\" }] })"
+            ],
+            ["idle_ns", "9541"],
+            ["code.lineno", "139"],
+            ["busy_ns", "50334"],
+            ["code.namespace", "layer_app::sm"],
+            ["code.filepath", "packages/app/src/sm.rs"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914716908,
+          "duration": 60
+        },
+        {
+          "traceId": "d9ac77568024c6fe607b957b92dab853",
+          "spanId": "86bae62a79866bb2",
+          "parentSpanId": "8e9d2334dee21b31",
+          "operationName": "transfer",
+          "tags": [
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["code.lineno", "354"],
+            ["idle_ns", "7667"],
+            ["to_address", "layer1y6v4dtfpu5zatqgv8u7cnfwrg9cvr3chvqkv0a"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["busy_ns", "17750"],
+            ["thread.id", "31"],
+            ["amount", "2000000uslay,"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914716927,
+          "duration": 26
         }
-      }
+      ]
     },
     {
-      "_index": "jaeger-span-2024-09-16",
-      "_id": "BeJK-5EBBKVn7oZLpI3h",
-      "_score": 9.826375,
-      "_ignored": ["logs.fields.value"],
-      "_source": {
-        "traceID": "d30aea5200b78ae959157607efdcd1f8",
-        "spanID": "9f4d4c14157184e9",
-        "flags": 1,
-        "operationName": "execute_tx",
-        "references": [
-          {
-            "refType": "CHILD_OF",
-            "traceID": "d30aea5200b78ae959157607efdcd1f8",
-            "spanID": "4b270bdce61c2fcc"
-          }
-        ],
-        "startTime": 1726497858013034,
-        "startTimeMillis": 1726497858013,
-        "duration": 544,
-        "tags": [
-          {
-            "key": "code.filepath",
-            "type": "string",
-            "value": "packages/app/src/app.rs"
-          },
-          {
-            "key": "code.namespace",
-            "type": "string",
-            "value": "layer_app::app"
-          },
-          {
-            "key": "tx",
-            "type": "string",
-            "value": "Signed(SignedTx { msgs: [Bank(Send { sender: slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j, recipient: slay3r1jxatnpcnhv73g3hl2692q9znq84ev2mf3shmug, amount: [Coin { 7890 \"uslay\" }] })], signer: slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j, signing_info: SigningInfo { message_hash: Binary(f20420641e06ada0f0b46d97b36ab081c04552dd7a53e216305c641dc262ef99), sequence: 2, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(5904853f7aab7b239cad05f1e0931622913fa191bb2d1f3583bf3dc1c456eb5a491000304c3f1622638452f14063afdcda82ac4ad7f4e79b59af1e20e46e7468) }, fee: FeeInfo { fee: Some(Coin { 2500 \"uslay\" }), gas_limit: 100000 }, timeout_height: None })"
-          },
-          {
-            "key": "tx_hash",
-            "type": "string",
-            "value": "8D05B6AB38D40797B7F2B390B32ED345382FF7C950AD593C4B2D7C5DC228A961"
-          },
-          {
-            "key": "code.lineno",
-            "type": "int64",
-            "value": "293"
-          },
-          {
-            "key": "idle_ns",
-            "type": "int64",
-            "value": "32916"
-          },
-          {
-            "key": "height",
-            "type": "string",
-            "value": "175"
-          },
-          {
-            "key": "busy_ns",
-            "type": "int64",
-            "value": "510792"
-          },
-          {
-            "key": "thread.id",
-            "type": "int64",
-            "value": "31"
-          },
-          {
-            "key": "otel.library.name",
-            "type": "string",
-            "value": "opentelemetry-jaeger"
-          },
-          {
-            "key": "otel.library.version",
-            "type": "string",
-            "value": "0.18.0"
-          },
-          {
-            "key": "internal.span.format",
-            "type": "string",
-            "value": "jaeger"
-          }
-        ],
-        "logs": [
-          {
-            "timestamp": 1726497858013563,
-            "fields": [
-              {
-                "key": "level",
-                "type": "string",
-                "value": "DEBUG"
-              },
-              {
-                "key": "target",
-                "type": "string",
-                "value": "layer_app::app"
-              },
-              {
-                "key": "success",
-                "type": "string",
-                "value": "TxResponse { data: [Bank(Send)], events: [[Event { ty: \"transfer\", attributes: [Attribute { key: \"recipient\", value: \"slay3r1jxatnpcnhv73g3hl2692q9znq84ev2mf3shmug\" }, Attribute { key: \"sender\", value: \"slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j\" }, Attribute { key: \"amount\", value: \"7890uslay\" }] }]] }"
-              },
-              {
-                "key": "code.filepath",
-                "type": "string",
-                "value": "packages/app/src/app.rs"
-              },
-              {
-                "key": "code.namespace",
-                "type": "string",
-                "value": "layer_app::app"
-              },
-              {
-                "key": "code.lineno",
-                "type": "int64",
-                "value": "364"
-              },
-              {
-                "key": "event",
-                "type": "string",
-                "value": "Tx success"
-              }
-            ]
-          }
-        ],
-        "process": {
-          "serviceName": "slay3rd",
+      "traceId": "8072ae291c79e6445296d0128286069c",
+      "startTime": 1729004914098517,
+      "spans": [
+        {
+          "traceId": "8072ae291c79e6445296d0128286069c",
+          "spanId": "04febb27a778fccf",
+          "parentSpanId": null,
+          "operationName": "abci_finalize_block",
           "tags": [
-            {
-              "key": "service.name",
-              "type": "string",
-              "value": "slay3rd"
-            }
-          ]
+            ["thread.id", "31"],
+            ["height", "3111"],
+            ["code.lineno", "200"],
+            [
+              "block_hash",
+              "79E85170F0B285853D1CD3062BBA800238767DF8AE292F22F853C93D6A1DACE8"
+            ],
+            ["code.namespace", "slay3rd::app"],
+            ["busy_ns", "1155542"],
+            ["idle_ns", "23125"],
+            ["code.filepath", "app/slay3rd/src/app.rs"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914098517,
+          "duration": 1178
+        },
+        {
+          "traceId": "8072ae291c79e6445296d0128286069c",
+          "spanId": "02ff372f7a37fef9",
+          "parentSpanId": "04febb27a778fccf",
+          "operationName": "finalize_block",
+          "tags": [
+            ["thread.id", "31"],
+            ["idle_ns", "14625"],
+            ["code.namespace", "layer_app::app"],
+            ["height", "3111"],
+            ["busy_ns", "971625"],
+            ["block.time", "2024-10-15T15:08:33.780923796+00:00"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["code.lineno", "377"],
+            ["txs", "1"],
+            ["block.nanos", "1729004913780923796"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914098675,
+          "duration": 982
+        },
+        {
+          "traceId": "8072ae291c79e6445296d0128286069c",
+          "spanId": "21a59704c61a5c32",
+          "parentSpanId": "02ff372f7a37fef9",
+          "operationName": "execute_tx",
+          "tags": [
+            [
+              "tx_hash",
+              "109B9CF8D1C9250776EDA30293EC0CA2C469EBC65857116411FF7ECD3FA4B034"
+            ],
+            ["code.lineno", "293"],
+            ["thread.id", "31"],
+            ["height", "3111"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["busy_ns", "767375"],
+            ["code.namespace", "layer_app::app"],
+            [
+              "tx",
+              "Signed(SignedTx { msgs: [Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1ykq0sf0reuypwwtkl2gqzf6k99lvwsmzx6cdlk, amount: [Coin { 9007199254740991 \"uslay\" }] })], signer: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, signing_info: SigningInfo { message_hash: Binary(548e0b103750536cfe4a3aa4406657aeab867e94b21dc50deb13406386f63eb5), sequence: 23, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(2d7bcbcee71efc4328a7ccfba6c5dfd818c0a4cced3c520dc6fda325a64ed38c3bcf8b3e51d3957a9e4be779b130ee20ee93ff1fc886b386447675245e933d80) }, fee: FeeInfo { fee: Some(Coin { 2000 \"uslay\" }), gas_limit: 99000 }, timeout_height: None })"
+            ],
+            ["idle_ns", "29250"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914098754,
+          "duration": 796
+        },
+        {
+          "traceId": "8072ae291c79e6445296d0128286069c",
+          "spanId": "e6cb49345e409007",
+          "parentSpanId": "21a59704c61a5c32",
+          "operationName": "auth.validate_tx",
+          "tags": [
+            ["validate_sig", "true"],
+            ["thread.id", "31"],
+            ["busy_ns", "654083"],
+            ["idle_ns", "5167"],
+            ["code.filepath", "packages/app/src/auth/keeper.rs"],
+            ["code.lineno", "71"],
+            ["code.namespace", "layer_app::auth::keeper"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914098784,
+          "duration": 659
+        },
+        {
+          "traceId": "8072ae291c79e6445296d0128286069c",
+          "spanId": "68248844e14b883f",
+          "parentSpanId": "e6cb49345e409007",
+          "operationName": "validate_signature",
+          "tags": [
+            ["code.filepath", "packages/std/src/pubkey.rs"],
+            ["code.lineno", "29"],
+            ["idle_ns", "4083"],
+            ["thread.id", "31"],
+            ["busy_ns", "480583"],
+            ["code.namespace", "layer_std::pubkey"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914098871,
+          "duration": 486
+        },
+        {
+          "traceId": "8072ae291c79e6445296d0128286069c",
+          "spanId": "77c5945ba1959f26",
+          "parentSpanId": "e6cb49345e409007",
+          "operationName": "transfer",
+          "tags": [
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["thread.id", "31"],
+            ["busy_ns", "30792"],
+            ["to_address", "layer1qurswpc8qurswpc8qurswpc8qurswpc8r336vn"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["idle_ns", "7958"],
+            ["code.lineno", "354"],
+            ["amount", "2000uslay,"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914099395,
+          "duration": 40
+        },
+        {
+          "traceId": "8072ae291c79e6445296d0128286069c",
+          "spanId": "0d50e48daa2d2604",
+          "parentSpanId": "21a59704c61a5c32",
+          "operationName": "sm.process_msg",
+          "tags": [
+            [
+              "msg",
+              "Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1ykq0sf0reuypwwtkl2gqzf6k99lvwsmzx6cdlk, amount: [Coin { 9007199254740991 \"uslay\" }] })"
+            ],
+            ["code.namespace", "layer_app::sm"],
+            ["code.lineno", "139"],
+            ["busy_ns", "52834"],
+            ["thread.id", "31"],
+            ["idle_ns", "8791"],
+            [
+              "error",
+              "Account layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug has insufficient funds"
+            ],
+            ["code.filepath", "packages/app/src/sm.rs"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914099476,
+          "duration": 62
+        },
+        {
+          "traceId": "8072ae291c79e6445296d0128286069c",
+          "spanId": "10850176f9ad0ada",
+          "parentSpanId": "0d50e48daa2d2604",
+          "operationName": "transfer",
+          "tags": [
+            ["idle_ns", "6667"],
+            ["code.lineno", "354"],
+            ["amount", "9007199254740991uslay,"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["busy_ns", "15083"],
+            ["thread.id", "31"],
+            ["to_address", "layer1ykq0sf0reuypwwtkl2gqzf6k99lvwsmzx6cdlk"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004914099494,
+          "duration": 23
         }
-      }
+      ]
     },
     {
-      "_index": "jaeger-span-2024-09-16",
-      "_id": "F-JK-5EBBKVn7oZLpI3h",
-      "_score": 9.826375,
-      "_source": {
-        "traceID": "a209a5132a580ccf3ce1dbf590b8ff3a",
-        "spanID": "9159bb4010b2b249",
-        "flags": 1,
-        "operationName": "execute_tx",
-        "references": [
-          {
-            "refType": "CHILD_OF",
-            "traceID": "a209a5132a580ccf3ce1dbf590b8ff3a",
-            "spanID": "c731ee24fdd43557"
-          }
-        ],
-        "startTime": 1726497858322754,
-        "startTimeMillis": 1726497858322,
-        "duration": 565,
-        "tags": [
-          {
-            "key": "code.namespace",
-            "type": "string",
-            "value": "layer_app::app"
-          },
-          {
-            "key": "code.filepath",
-            "type": "string",
-            "value": "packages/app/src/app.rs"
-          },
-          {
-            "key": "idle_ns",
-            "type": "int64",
-            "value": "38084"
-          },
-          {
-            "key": "tx_hash",
-            "type": "string",
-            "value": "F31CFF8A6E9D49BC1EF2454E2B232A83126C018BD84369DDFD866D25EECA25ED"
-          },
-          {
-            "key": "code.lineno",
-            "type": "int64",
-            "value": "293"
-          },
-          {
-            "key": "height",
-            "type": "string",
-            "value": "176"
-          },
-          {
-            "key": "busy_ns",
-            "type": "int64",
-            "value": "527125"
-          },
-          {
-            "key": "thread.id",
-            "type": "int64",
-            "value": "31"
-          },
-          {
-            "key": "tx",
-            "type": "string",
-            "value": "Signed(SignedTx { msgs: [Bank(Send { sender: slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j, recipient: slay3r1m2fc6fqc3h9vqr9mtekga9lw6afy3kvv8q6xf2, amount: [Coin { 9007199254740991 \"uslay\" }] })], signer: slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j, signing_info: SigningInfo { message_hash: Binary(afdae08c8029c5a4222c88e3a4501b619d64305c89668e9f51a326afdffb395f), sequence: 3, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(44225bcd0e511b8fc29637bc326f27be286cfded62cac4c015cd7bcce721c21735cea159afbd2019ee3f2e5695bbf60dedbda6073f60356d124159bfeceab32d) }, fee: FeeInfo { fee: Some(Coin { 2000 \"uslay\" }), gas_limit: 99000 }, timeout_height: None })"
-          },
-          {
-            "key": "otel.library.name",
-            "type": "string",
-            "value": "opentelemetry-jaeger"
-          },
-          {
-            "key": "otel.library.version",
-            "type": "string",
-            "value": "0.18.0"
-          },
-          {
-            "key": "internal.span.format",
-            "type": "string",
-            "value": "jaeger"
-          }
-        ],
-        "logs": [
-          {
-            "timestamp": 1726497858323313,
-            "fields": [
-              {
-                "key": "level",
-                "type": "string",
-                "value": "DEBUG"
-              },
-              {
-                "key": "target",
-                "type": "string",
-                "value": "layer_app::app"
-              },
-              {
-                "key": "error",
-                "type": "string",
-                "value": "Account slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j has insufficient funds"
-              },
-              {
-                "key": "code.filepath",
-                "type": "string",
-                "value": "packages/app/src/app.rs"
-              },
-              {
-                "key": "code.namespace",
-                "type": "string",
-                "value": "layer_app::app"
-              },
-              {
-                "key": "code.lineno",
-                "type": "int64",
-                "value": "365"
-              },
-              {
-                "key": "event",
-                "type": "string",
-                "value": "Tx error"
-              }
-            ]
-          }
-        ],
-        "process": {
-          "serviceName": "slay3rd",
+      "traceId": "ed217163699ce136e3024722e8448611",
+      "startTime": 1729004913463046,
+      "spans": [
+        {
+          "traceId": "ed217163699ce136e3024722e8448611",
+          "spanId": "9c8fc66109aca3cd",
+          "parentSpanId": null,
+          "operationName": "abci_finalize_block",
           "tags": [
-            {
-              "key": "service.name",
-              "type": "string",
-              "value": "slay3rd"
-            }
-          ]
+            ["code.namespace", "slay3rd::app"],
+            ["code.lineno", "200"],
+            [
+              "block_hash",
+              "59E5E6946461F6B6F17E7042E771F6214787851F78A96A1924E091ACC12075AA"
+            ],
+            ["idle_ns", "18000"],
+            ["height", "3109"],
+            ["code.filepath", "app/slay3rd/src/app.rs"],
+            ["thread.id", "31"],
+            ["busy_ns", "689959"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913463046,
+          "duration": 707
+        },
+        {
+          "traceId": "ed217163699ce136e3024722e8448611",
+          "spanId": "0ad7a65b54d91e54",
+          "parentSpanId": "9c8fc66109aca3cd",
+          "operationName": "finalize_block",
+          "tags": [
+            ["idle_ns", "8250"],
+            ["code.lineno", "377"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["block.time", "2024-10-15T15:08:33.154689296+00:00"],
+            ["busy_ns", "565417"],
+            ["code.namespace", "layer_app::app"],
+            ["height", "3109"],
+            ["txs", "1"],
+            ["thread.id", "31"],
+            ["block.nanos", "1729004913154689296"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913463160,
+          "duration": 571
+        },
+        {
+          "traceId": "ed217163699ce136e3024722e8448611",
+          "spanId": "0f579f40bce11e8e",
+          "parentSpanId": "0ad7a65b54d91e54",
+          "operationName": "execute_tx",
+          "tags": [
+            ["height", "3109"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["idle_ns", "15917"],
+            ["thread.id", "31"],
+            [
+              "tx_hash",
+              "A3CE7A965C383A76B0C451FD285684A18E7E81FA6914817B41F60668295EF3DA"
+            ],
+            ["code.lineno", "293"],
+            [
+              "tx",
+              "Signed(SignedTx { msgs: [Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1jfcjy49j3yuzprljp5qdz2kqvnlhvj6d5v69rm, amount: [Coin { 7890 \"uslay\" }] })], signer: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, signing_info: SigningInfo { message_hash: Binary(22bebc7d52280d96660f180d43cc17617ed7b451906955438e5ef946b38441e2), sequence: 22, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(ea12d580f0ae72b8d03dbd77a075aa66790c4b81bb73f04579607308bf63149839ec6fffb0fe51724fe5db91fd9f006b373307583941ed002afd3398ff737e2a) }, fee: FeeInfo { fee: Some(Coin { 2500 \"uslay\" }), gas_limit: 100000 }, timeout_height: None })"
+            ],
+            ["busy_ns", "458083"],
+            ["code.namespace", "layer_app::app"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913463197,
+          "duration": 474
+        },
+        {
+          "traceId": "ed217163699ce136e3024722e8448611",
+          "spanId": "f0e46c6635465658",
+          "parentSpanId": "0f579f40bce11e8e",
+          "operationName": "auth.validate_tx",
+          "tags": [
+            ["code.filepath", "packages/app/src/auth/keeper.rs"],
+            ["code.lineno", "71"],
+            ["busy_ns", "383958"],
+            ["idle_ns", "2292"],
+            ["code.namespace", "layer_app::auth::keeper"],
+            ["thread.id", "31"],
+            ["validate_sig", "true"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913463214,
+          "duration": 386
+        },
+        {
+          "traceId": "ed217163699ce136e3024722e8448611",
+          "spanId": "fefc64df4ce457d8",
+          "parentSpanId": "f0e46c6635465658",
+          "operationName": "validate_signature",
+          "tags": [
+            ["thread.id", "31"],
+            ["code.lineno", "29"],
+            ["code.namespace", "layer_std::pubkey"],
+            ["code.filepath", "packages/std/src/pubkey.rs"],
+            ["idle_ns", "2292"],
+            ["busy_ns", "309375"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913463239,
+          "duration": 312
+        },
+        {
+          "traceId": "ed217163699ce136e3024722e8448611",
+          "spanId": "aa4a1246c0cb18b2",
+          "parentSpanId": "f0e46c6635465658",
+          "operationName": "transfer",
+          "tags": [
+            ["thread.id", "31"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["idle_ns", "5291"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["code.lineno", "354"],
+            ["to_address", "layer1qurswpc8qurswpc8qurswpc8qurswpc8r336vn"],
+            ["busy_ns", "14334"],
+            ["amount", "2500uslay,"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913463574,
+          "duration": 20
+        },
+        {
+          "traceId": "ed217163699ce136e3024722e8448611",
+          "spanId": "fae5a094d692b08a",
+          "parentSpanId": "0f579f40bce11e8e",
+          "operationName": "sm.process_msg",
+          "tags": [
+            [
+              "msg",
+              "Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1jfcjy49j3yuzprljp5qdz2kqvnlhvj6d5v69rm, amount: [Coin { 7890 \"uslay\" }] })"
+            ],
+            ["idle_ns", "5125"],
+            ["code.namespace", "layer_app::sm"],
+            ["code.filepath", "packages/app/src/sm.rs"],
+            ["code.lineno", "139"],
+            ["thread.id", "31"],
+            [
+              "success",
+              "[Event { ty: \"transfer\", attributes: [Attribute { key: \"recipient\", value: \"layer1jfcjy49j3yuzprljp5qdz2kqvnlhvj6d5v69rm\" }, Attribute { key: \"sender\", value: \"layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug\" }, Attribute { key: \"amount\", value: \"7890uslay\" }] }]"
+            ],
+            ["busy_ns", "33375"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913463617,
+          "duration": 38
+        },
+        {
+          "traceId": "ed217163699ce136e3024722e8448611",
+          "spanId": "e810549e118e9800",
+          "parentSpanId": "fae5a094d692b08a",
+          "operationName": "transfer",
+          "tags": [
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["busy_ns", "10000"],
+            ["thread.id", "31"],
+            ["idle_ns", "4583"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["amount", "7890uslay,"],
+            ["to_address", "layer1jfcjy49j3yuzprljp5qdz2kqvnlhvj6d5v69rm"],
+            ["code.lineno", "354"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913463627,
+          "duration": 14
         }
-      }
+      ]
     },
     {
-      "_index": "jaeger-span-2024-09-16",
-      "_id": "UeJK-5EBBKVn7oZLuI1q",
-      "_score": 9.826375,
-      "_ignored": ["logs.fields.value"],
-      "_source": {
-        "traceID": "a33d3106258f189edbdbd1446a648179",
-        "spanID": "06c4957b52100b5c",
-        "flags": 1,
-        "operationName": "execute_tx",
-        "references": [
-          {
-            "refType": "CHILD_OF",
-            "traceID": "a33d3106258f189edbdbd1446a648179",
-            "spanID": "fa16662cf99c0843"
-          }
-        ],
-        "startTime": 1726497858932177,
-        "startTimeMillis": 1726497858932,
-        "duration": 315,
-        "tags": [
-          {
-            "key": "code.namespace",
-            "type": "string",
-            "value": "layer_app::app"
-          },
-          {
-            "key": "tx",
-            "type": "string",
-            "value": "Signed(SignedTx { msgs: [Bank(Send { sender: slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j, recipient: slay3r1nhwtg3m9gscya602qeeqgtseggzmse88zpuw2a, amount: [Coin { 2000000 \"uslay\" }] })], signer: slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j, signing_info: SigningInfo { message_hash: Binary(f6492baed1652eb7a912d0167bcf26734c2584200c2fdfc727614c3daacc91e2), sequence: 4, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(0e6168c9937154ad7a50e2ad41c104621199bbfd027c192b80749e420c9f1b8003f78475df11864049392274dbd980dbe5d20da15c73143745bf0339a679b790) }, fee: FeeInfo { fee: Some(Coin { 668 \"uslay\" }), gas_limit: 26699 }, timeout_height: None })"
-          },
-          {
-            "key": "tx_hash",
-            "type": "string",
-            "value": "7146DDFF4369A2FEF9F2A1C99CC8BFC2821A38D23E7B3473855633B4A8BD2722"
-          },
-          {
-            "key": "height",
-            "type": "string",
-            "value": "178"
-          },
-          {
-            "key": "thread.id",
-            "type": "int64",
-            "value": "31"
-          },
-          {
-            "key": "code.lineno",
-            "type": "int64",
-            "value": "293"
-          },
-          {
-            "key": "idle_ns",
-            "type": "int64",
-            "value": "18625"
-          },
-          {
-            "key": "busy_ns",
-            "type": "int64",
-            "value": "297000"
-          },
-          {
-            "key": "code.filepath",
-            "type": "string",
-            "value": "packages/app/src/app.rs"
-          },
-          {
-            "key": "otel.library.name",
-            "type": "string",
-            "value": "opentelemetry-jaeger"
-          },
-          {
-            "key": "otel.library.version",
-            "type": "string",
-            "value": "0.18.0"
-          },
-          {
-            "key": "internal.span.format",
-            "type": "string",
-            "value": "jaeger"
-          }
-        ],
-        "logs": [
-          {
-            "timestamp": 1726497858932487,
-            "fields": [
-              {
-                "key": "level",
-                "type": "string",
-                "value": "DEBUG"
-              },
-              {
-                "key": "target",
-                "type": "string",
-                "value": "layer_app::app"
-              },
-              {
-                "key": "success",
-                "type": "string",
-                "value": "TxResponse { data: [Bank(Send)], events: [[Event { ty: \"transfer\", attributes: [Attribute { key: \"recipient\", value: \"slay3r1nhwtg3m9gscya602qeeqgtseggzmse88zpuw2a\" }, Attribute { key: \"sender\", value: \"slay3r1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmvk3r3j\" }, Attribute { key: \"amount\", value: \"2000000uslay\" }] }]] }"
-              },
-              {
-                "key": "code.filepath",
-                "type": "string",
-                "value": "packages/app/src/app.rs"
-              },
-              {
-                "key": "code.namespace",
-                "type": "string",
-                "value": "layer_app::app"
-              },
-              {
-                "key": "code.lineno",
-                "type": "int64",
-                "value": "364"
-              },
-              {
-                "key": "event",
-                "type": "string",
-                "value": "Tx success"
-              }
-            ]
-          }
-        ],
-        "process": {
-          "serviceName": "slay3rd",
+      "traceId": "e61b3e5c6a04b052a1a04427580f7da5",
+      "startTime": 1729004913159488,
+      "spans": [
+        {
+          "traceId": "e61b3e5c6a04b052a1a04427580f7da5",
+          "spanId": "d1fe7bdfeabe7d08",
+          "parentSpanId": null,
+          "operationName": "abci_finalize_block",
           "tags": [
-            {
-              "key": "service.name",
-              "type": "string",
-              "value": "slay3rd"
-            }
-          ]
+            ["code.namespace", "slay3rd::app"],
+            ["idle_ns", "19416"],
+            ["height", "3108"],
+            ["busy_ns", "1116792"],
+            [
+              "block_hash",
+              "0A0C3F722B668B68B40F9BB7BAC9986589BA42196D8FADF29975C5D877FFDE3F"
+            ],
+            ["code.filepath", "app/slay3rd/src/app.rs"],
+            ["code.lineno", "200"],
+            ["thread.id", "31"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913159488,
+          "duration": 1137
+        },
+        {
+          "traceId": "e61b3e5c6a04b052a1a04427580f7da5",
+          "spanId": "06f22040063e9325",
+          "parentSpanId": "d1fe7bdfeabe7d08",
+          "operationName": "finalize_block",
+          "tags": [
+            ["block.nanos", "1729004912842634754"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["block.time", "2024-10-15T15:08:32.842634754+00:00"],
+            ["txs", "1"],
+            ["busy_ns", "956750"],
+            ["code.lineno", "377"],
+            ["thread.id", "31"],
+            ["code.namespace", "layer_app::app"],
+            ["idle_ns", "17250"],
+            ["height", "3108"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913159610,
+          "duration": 972
+        },
+        {
+          "traceId": "e61b3e5c6a04b052a1a04427580f7da5",
+          "spanId": "3e82215bf4ab4f19",
+          "parentSpanId": "06f22040063e9325",
+          "operationName": "execute_tx",
+          "tags": [
+            ["code.namespace", "layer_app::app"],
+            ["height", "3108"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["code.lineno", "293"],
+            ["idle_ns", "28958"],
+            ["busy_ns", "753459"],
+            [
+              "tx",
+              "Signed(SignedTx { msgs: [Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1y0hwv5a06pndj8grkwqzaexk3vg7dx4y4d35kz, amount: [Coin { 7890 \"uslay\" }] })], signer: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, signing_info: SigningInfo { message_hash: Binary(c159d1a9d18333c307bf4a3ead06622ec0dfc2388b18306816bc17ecb46e04ee), sequence: 21, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(b01bc68a6f332c4f8cbfbd5dd7e9a39f934d146f6b978425873be3502c895dd6159ef94e1d8c8f1f26750f332fdd30156bd5c52dfbdbeef6efe2531c29fd0c7c) }, fee: FeeInfo { fee: Some(Coin { 2500 \"uslay\" }), gas_limit: 100000 }, timeout_height: None })"
+            ],
+            [
+              "tx_hash",
+              "52083B60AA7BC8AE54BC3C96560908CAD0E1F8731C996A3CA5953D04C3F11BB1"
+            ],
+            ["thread.id", "31"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913159674,
+          "duration": 782
+        },
+        {
+          "traceId": "e61b3e5c6a04b052a1a04427580f7da5",
+          "spanId": "d42f4568446f07a5",
+          "parentSpanId": "3e82215bf4ab4f19",
+          "operationName": "auth.validate_tx",
+          "tags": [
+            ["code.lineno", "71"],
+            ["busy_ns", "614667"],
+            ["thread.id", "31"],
+            ["code.filepath", "packages/app/src/auth/keeper.rs"],
+            ["validate_sig", "true"],
+            ["idle_ns", "4417"],
+            ["code.namespace", "layer_app::auth::keeper"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913159705,
+          "duration": 618
+        },
+        {
+          "traceId": "e61b3e5c6a04b052a1a04427580f7da5",
+          "spanId": "d588d4c5ebae80af",
+          "parentSpanId": "d42f4568446f07a5",
+          "operationName": "validate_signature",
+          "tags": [
+            ["code.lineno", "29"],
+            ["code.namespace", "layer_std::pubkey"],
+            ["thread.id", "31"],
+            ["busy_ns", "499250"],
+            ["idle_ns", "5541"],
+            ["code.filepath", "packages/std/src/pubkey.rs"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913159744,
+          "duration": 506
+        },
+        {
+          "traceId": "e61b3e5c6a04b052a1a04427580f7da5",
+          "spanId": "56d6e9a752873297",
+          "parentSpanId": "d42f4568446f07a5",
+          "operationName": "transfer",
+          "tags": [
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["idle_ns", "8625"],
+            ["to_address", "layer1qurswpc8qurswpc8qurswpc8qurswpc8r336vn"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["busy_ns", "16750"],
+            ["amount", "2500uslay,"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["code.lineno", "354"],
+            ["thread.id", "31"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913160288,
+          "duration": 26
+        },
+        {
+          "traceId": "e61b3e5c6a04b052a1a04427580f7da5",
+          "spanId": "cc994cf8d40a892d",
+          "parentSpanId": "3e82215bf4ab4f19",
+          "operationName": "sm.process_msg",
+          "tags": [
+            [
+              "msg",
+              "Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1y0hwv5a06pndj8grkwqzaexk3vg7dx4y4d35kz, amount: [Coin { 7890 \"uslay\" }] })"
+            ],
+            [
+              "success",
+              "[Event { ty: \"transfer\", attributes: [Attribute { key: \"recipient\", value: \"layer1y0hwv5a06pndj8grkwqzaexk3vg7dx4y4d35kz\" }, Attribute { key: \"sender\", value: \"layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug\" }, Attribute { key: \"amount\", value: \"7890uslay\" }] }]"
+            ],
+            ["busy_ns", "64084"],
+            ["code.lineno", "139"],
+            ["thread.id", "31"],
+            ["code.namespace", "layer_app::sm"],
+            ["code.filepath", "packages/app/src/sm.rs"],
+            ["idle_ns", "9083"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913160353,
+          "duration": 73
+        },
+        {
+          "traceId": "e61b3e5c6a04b052a1a04427580f7da5",
+          "spanId": "0621f7e35ee13297",
+          "parentSpanId": "cc994cf8d40a892d",
+          "operationName": "transfer",
+          "tags": [
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["busy_ns", "23958"],
+            ["idle_ns", "6250"],
+            ["thread.id", "31"],
+            ["amount", "7890uslay,"],
+            ["code.lineno", "354"],
+            ["to_address", "layer1y0hwv5a06pndj8grkwqzaexk3vg7dx4y4d35kz"],
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004913160371,
+          "duration": 30
         }
-      }
+      ]
+    },
+    {
+      "traceId": "070b9658576eac16f5e61ff1961f765b",
+      "startTime": 1729004827914687,
+      "spans": [
+        {
+          "traceId": "070b9658576eac16f5e61ff1961f765b",
+          "spanId": "4414289e93fdea58",
+          "parentSpanId": null,
+          "operationName": "abci_finalize_block",
+          "tags": [
+            ["code.namespace", "slay3rd::app"],
+            ["thread.id", "31"],
+            ["idle_ns", "21458"],
+            ["height", "2834"],
+            ["code.lineno", "200"],
+            [
+              "block_hash",
+              "3AFBD0AD5B8F27150DC6FF2E92279AE07F23CF37F3345140E15B5B0FD886B5F3"
+            ],
+            ["busy_ns", "1100458"],
+            ["code.filepath", "app/slay3rd/src/app.rs"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827914687,
+          "duration": 1121
+        },
+        {
+          "traceId": "070b9658576eac16f5e61ff1961f765b",
+          "spanId": "9b1200c149eadea8",
+          "parentSpanId": "4414289e93fdea58",
+          "operationName": "finalize_block",
+          "tags": [
+            ["height", "2834"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["idle_ns", "15334"],
+            ["block.nanos", "1729004827598768465"],
+            ["block.time", "2024-10-15T15:07:07.598768465+00:00"],
+            ["code.lineno", "377"],
+            ["thread.id", "31"],
+            ["txs", "1"],
+            ["code.namespace", "layer_app::app"],
+            ["busy_ns", "934625"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827914814,
+          "duration": 948
+        },
+        {
+          "traceId": "070b9658576eac16f5e61ff1961f765b",
+          "spanId": "8c32bbb7258f4b3a",
+          "parentSpanId": "9b1200c149eadea8",
+          "operationName": "execute_tx",
+          "tags": [
+            ["thread.id", "31"],
+            ["code.namespace", "layer_app::app"],
+            [
+              "tx_hash",
+              "D55A47D9D01A1BD7823751673A28636CF9468579C2E8C686FB2EAEA528F44E3A"
+            ],
+            ["busy_ns", "737833"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["idle_ns", "35875"],
+            [
+              "tx",
+              "Signed(SignedTx { msgs: [Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1zce0run82wsgt5kxhnuhdqfzvnawxl8wr0ftr9, amount: [Coin { 2000000 \"uslay\" }] })], signer: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, signing_info: SigningInfo { message_hash: Binary(25372d0b295883eb6b285adc7bcec5607168c71185d496ae95e17075ee4fcf14), sequence: 4, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(53addd8da73cc93ad915417a794d0bf4428759a5148d729fa99efb62a03099a777e7303c32eeb0376f9c21b3e8d93003441e578aa177763a84facb34cc7a1149) }, fee: FeeInfo { fee: Some(Coin { 667 \"uslay\" }), gas_limit: 26671 }, timeout_height: None })"
+            ],
+            ["code.lineno", "293"],
+            ["height", "2834"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827914874,
+          "duration": 772
+        },
+        {
+          "traceId": "070b9658576eac16f5e61ff1961f765b",
+          "spanId": "a49240d84a236efc",
+          "parentSpanId": "8c32bbb7258f4b3a",
+          "operationName": "auth.validate_tx",
+          "tags": [
+            ["code.filepath", "packages/app/src/auth/keeper.rs"],
+            ["thread.id", "31"],
+            ["validate_sig", "true"],
+            ["code.namespace", "layer_app::auth::keeper"],
+            ["busy_ns", "574958"],
+            ["code.lineno", "71"],
+            ["idle_ns", "4667"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827914911,
+          "duration": 579
+        },
+        {
+          "traceId": "070b9658576eac16f5e61ff1961f765b",
+          "spanId": "e52a4ef4ad0a51f2",
+          "parentSpanId": "a49240d84a236efc",
+          "operationName": "validate_signature",
+          "tags": [
+            ["idle_ns", "4291"],
+            ["thread.id", "31"],
+            ["code.filepath", "packages/std/src/pubkey.rs"],
+            ["code.namespace", "layer_std::pubkey"],
+            ["code.lineno", "29"],
+            ["busy_ns", "472125"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827914951,
+          "duration": 476
+        },
+        {
+          "traceId": "070b9658576eac16f5e61ff1961f765b",
+          "spanId": "1c233673a49881f1",
+          "parentSpanId": "a49240d84a236efc",
+          "operationName": "transfer",
+          "tags": [
+            ["idle_ns", "7291"],
+            ["to_address", "layer1qurswpc8qurswpc8qurswpc8qurswpc8r336vn"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["amount", "667uslay,"],
+            ["busy_ns", "15417"],
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["thread.id", "31"],
+            ["code.lineno", "354"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827915459,
+          "duration": 23
+        },
+        {
+          "traceId": "070b9658576eac16f5e61ff1961f765b",
+          "spanId": "4b1b5dd00c72abd2",
+          "parentSpanId": "8c32bbb7258f4b3a",
+          "operationName": "sm.process_msg",
+          "tags": [
+            [
+              "success",
+              "[Event { ty: \"transfer\", attributes: [Attribute { key: \"recipient\", value: \"layer1zce0run82wsgt5kxhnuhdqfzvnawxl8wr0ftr9\" }, Attribute { key: \"sender\", value: \"layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug\" }, Attribute { key: \"amount\", value: \"2000000uslay\" }] }]"
+            ],
+            ["code.namespace", "layer_app::sm"],
+            ["busy_ns", "92875"],
+            ["code.filepath", "packages/app/src/sm.rs"],
+            ["idle_ns", "7958"],
+            ["thread.id", "31"],
+            [
+              "msg",
+              "Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1zce0run82wsgt5kxhnuhdqfzvnawxl8wr0ftr9, amount: [Coin { 2000000 \"uslay\" }] })"
+            ],
+            ["code.lineno", "139"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827915520,
+          "duration": 101
+        },
+        {
+          "traceId": "070b9658576eac16f5e61ff1961f765b",
+          "spanId": "cc3f20561daaaea9",
+          "parentSpanId": "4b1b5dd00c72abd2",
+          "operationName": "transfer",
+          "tags": [
+            ["idle_ns", "38041"],
+            ["thread.id", "31"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["code.lineno", "354"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["to_address", "layer1zce0run82wsgt5kxhnuhdqfzvnawxl8wr0ftr9"],
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["amount", "2000000uslay,"],
+            ["busy_ns", "23500"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827915567,
+          "duration": 31
+        }
+      ]
+    },
+    {
+      "traceId": "a7dd5c27cbf419a9520dc72a8e4537ac",
+      "startTime": 1729004827296256,
+      "spans": [
+        {
+          "traceId": "a7dd5c27cbf419a9520dc72a8e4537ac",
+          "spanId": "cdfa6f4f84204c87",
+          "parentSpanId": null,
+          "operationName": "abci_finalize_block",
+          "tags": [
+            ["thread.id", "31"],
+            ["code.lineno", "200"],
+            ["idle_ns", "20791"],
+            ["busy_ns", "1144459"],
+            ["code.namespace", "slay3rd::app"],
+            ["code.filepath", "app/slay3rd/src/app.rs"],
+            [
+              "block_hash",
+              "C3138585B1DC9DD1F4CD86565BF02626AEA31138BBC4006225F6D9049BC79C92"
+            ],
+            ["height", "2832"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827296256,
+          "duration": 1164
+        },
+        {
+          "traceId": "a7dd5c27cbf419a9520dc72a8e4537ac",
+          "spanId": "9f0e9f380f02387f",
+          "parentSpanId": "cdfa6f4f84204c87",
+          "operationName": "finalize_block",
+          "tags": [
+            ["txs", "1"],
+            ["code.namespace", "layer_app::app"],
+            ["height", "2832"],
+            ["busy_ns", "982125"],
+            ["block.nanos", "1729004826981796339"],
+            ["thread.id", "31"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["idle_ns", "14375"],
+            ["code.lineno", "377"],
+            ["block.time", "2024-10-15T15:07:06.981796339+00:00"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827296393,
+          "duration": 993
+        },
+        {
+          "traceId": "a7dd5c27cbf419a9520dc72a8e4537ac",
+          "spanId": "226354bb8ef0b1f8",
+          "parentSpanId": "9f0e9f380f02387f",
+          "operationName": "execute_tx",
+          "tags": [
+            [
+              "tx",
+              "Signed(SignedTx { msgs: [Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1j0fc3x06eqkcksa9ept4q56zsyyd9rsme63uty, amount: [Coin { 9007199254740991 \"uslay\" }] })], signer: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, signing_info: SigningInfo { message_hash: Binary(de2f66c303fdf07fb01df0ec47da6731e942efebaa98bfa3a6fd79a12f0393ea), sequence: 3, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(a5cde69a887b06f06b259394acf8db195aaa8075c64b6a335d643ccbfef7e6bb30a2641c68f192efccf935fb68ef448d12df59dfd34427458eaab12104c1c363) }, fee: FeeInfo { fee: Some(Coin { 2000 \"uslay\" }), gas_limit: 99000 }, timeout_height: None })"
+            ],
+            ["busy_ns", "765125"],
+            ["code.namespace", "layer_app::app"],
+            ["height", "2832"],
+            ["idle_ns", "34041"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["code.lineno", "293"],
+            [
+              "tx_hash",
+              "2E45B65CA459ABB593B8E0F17975E9EEEBA13937B28D6170E6473D273D781D53"
+            ],
+            ["thread.id", "31"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827296461,
+          "duration": 798
+        },
+        {
+          "traceId": "a7dd5c27cbf419a9520dc72a8e4537ac",
+          "spanId": "27c19c819265019e",
+          "parentSpanId": "226354bb8ef0b1f8",
+          "operationName": "auth.validate_tx",
+          "tags": [
+            ["code.filepath", "packages/app/src/auth/keeper.rs"],
+            ["validate_sig", "true"],
+            ["busy_ns", "651792"],
+            ["code.lineno", "71"],
+            ["code.namespace", "layer_app::auth::keeper"],
+            ["thread.id", "31"],
+            ["idle_ns", "3458"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827296495,
+          "duration": 656
+        },
+        {
+          "traceId": "a7dd5c27cbf419a9520dc72a8e4537ac",
+          "spanId": "e3ba67fe825a6ff4",
+          "parentSpanId": "27c19c819265019e",
+          "operationName": "validate_signature",
+          "tags": [
+            ["busy_ns", "482916"],
+            ["thread.id", "31"],
+            ["code.namespace", "layer_std::pubkey"],
+            ["code.filepath", "packages/std/src/pubkey.rs"],
+            ["code.lineno", "29"],
+            ["idle_ns", "6042"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827296586,
+          "duration": 488
+        },
+        {
+          "traceId": "a7dd5c27cbf419a9520dc72a8e4537ac",
+          "spanId": "ab7761af2cdd623f",
+          "parentSpanId": "27c19c819265019e",
+          "operationName": "transfer",
+          "tags": [
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["amount", "2000uslay,"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["to_address", "layer1qurswpc8qurswpc8qurswpc8qurswpc8r336vn"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["code.lineno", "354"],
+            ["idle_ns", "9750"],
+            ["thread.id", "31"],
+            ["busy_ns", "19916"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827297112,
+          "duration": 30
+        },
+        {
+          "traceId": "a7dd5c27cbf419a9520dc72a8e4537ac",
+          "spanId": "3e0593681f5fd7bc",
+          "parentSpanId": "226354bb8ef0b1f8",
+          "operationName": "sm.process_msg",
+          "tags": [
+            [
+              "msg",
+              "Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1j0fc3x06eqkcksa9ept4q56zsyyd9rsme63uty, amount: [Coin { 9007199254740991 \"uslay\" }] })"
+            ],
+            ["code.filepath", "packages/app/src/sm.rs"],
+            ["idle_ns", "10083"],
+            ["thread.id", "31"],
+            ["code.namespace", "layer_app::sm"],
+            [
+              "error",
+              "Account layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug has insufficient funds"
+            ],
+            ["busy_ns", "51084"],
+            ["code.lineno", "139"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827297184,
+          "duration": 61
+        },
+        {
+          "traceId": "a7dd5c27cbf419a9520dc72a8e4537ac",
+          "spanId": "41f63b9fa63db6e4",
+          "parentSpanId": "3e0593681f5fd7bc",
+          "operationName": "transfer",
+          "tags": [
+            ["code.lineno", "354"],
+            ["idle_ns", "5375"],
+            ["busy_ns", "16583"],
+            ["amount", "9007199254740991uslay,"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["thread.id", "31"],
+            ["to_address", "layer1j0fc3x06eqkcksa9ept4q56zsyyd9rsme63uty"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004827297203,
+          "duration": 22
+        }
+      ]
+    },
+    {
+      "traceId": "e3af72b1566efadd0f114b09ea7f15f5",
+      "startTime": 1729004826674810,
+      "spans": [
+        {
+          "traceId": "e3af72b1566efadd0f114b09ea7f15f5",
+          "spanId": "099a3ff33b25301d",
+          "parentSpanId": null,
+          "operationName": "abci_finalize_block",
+          "tags": [
+            ["busy_ns", "467500"],
+            ["code.namespace", "slay3rd::app"],
+            ["height", "2830"],
+            ["code.lineno", "200"],
+            [
+              "block_hash",
+              "4C382C4839DEC9D1289330DB6E39742698993A901EB86CBE6CAA2DF543925E0A"
+            ],
+            ["code.filepath", "app/slay3rd/src/app.rs"],
+            ["thread.id", "31"],
+            ["idle_ns", "12958"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826674810,
+          "duration": 479
+        },
+        {
+          "traceId": "e3af72b1566efadd0f114b09ea7f15f5",
+          "spanId": "3fc3ee9da14b1b63",
+          "parentSpanId": "099a3ff33b25301d",
+          "operationName": "finalize_block",
+          "tags": [
+            ["code.lineno", "377"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["thread.id", "31"],
+            ["busy_ns", "379875"],
+            ["height", "2830"],
+            ["code.namespace", "layer_app::app"],
+            ["idle_ns", "6500"],
+            ["block.nanos", "1729004826363276089"],
+            ["txs", "1"],
+            ["block.time", "2024-10-15T15:07:06.363276089+00:00"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826674890,
+          "duration": 385
+        },
+        {
+          "traceId": "e3af72b1566efadd0f114b09ea7f15f5",
+          "spanId": "0665f5a7a486631c",
+          "parentSpanId": "3fc3ee9da14b1b63",
+          "operationName": "execute_tx",
+          "tags": [
+            ["height", "2830"],
+            ["busy_ns", "306833"],
+            ["code.lineno", "293"],
+            ["code.namespace", "layer_app::app"],
+            [
+              "tx",
+              "Signed(SignedTx { msgs: [Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer15ue3s00rgn3cd92qsh8gump9xddenlrlazc6k6, amount: [Coin { 7890 \"uslay\" }] })], signer: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, signing_info: SigningInfo { message_hash: Binary(0c594b88265963bc7913fed0d9e36ef5621a34d6f18132f2dcb96ee453417a99), sequence: 2, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(2b405534c93f08336798063089ce22525835422a388495dfb71a814c563c66514d83ae057b31d278300703576da108bc38f8995a9e73b8684f32618004da8d0a) }, fee: FeeInfo { fee: Some(Coin { 2500 \"uslay\" }), gas_limit: 100000 }, timeout_height: None })"
+            ],
+            [
+              "tx_hash",
+              "DB46BF203F2F989459E4A0F9F79CA48CD8165DD404694773C02B246058CD9EAF"
+            ],
+            ["idle_ns", "10917"],
+            ["thread.id", "31"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826674917,
+          "duration": 317
+        },
+        {
+          "traceId": "e3af72b1566efadd0f114b09ea7f15f5",
+          "spanId": "6d1817336a8965fa",
+          "parentSpanId": "0665f5a7a486631c",
+          "operationName": "auth.validate_tx",
+          "tags": [
+            ["validate_sig", "true"],
+            ["code.filepath", "packages/app/src/auth/keeper.rs"],
+            ["thread.id", "31"],
+            ["busy_ns", "262125"],
+            ["idle_ns", "1334"],
+            ["code.namespace", "layer_app::auth::keeper"],
+            ["code.lineno", "71"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826674928,
+          "duration": 263
+        },
+        {
+          "traceId": "e3af72b1566efadd0f114b09ea7f15f5",
+          "spanId": "8b4febe7aff7a269",
+          "parentSpanId": "6d1817336a8965fa",
+          "operationName": "validate_signature",
+          "tags": [
+            ["code.namespace", "layer_std::pubkey"],
+            ["busy_ns", "212500"],
+            ["idle_ns", "1625"],
+            ["code.lineno", "29"],
+            ["code.filepath", "packages/std/src/pubkey.rs"],
+            ["thread.id", "31"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826674944,
+          "duration": 214
+        },
+        {
+          "traceId": "e3af72b1566efadd0f114b09ea7f15f5",
+          "spanId": "50b7bdbac523c34d",
+          "parentSpanId": "6d1817336a8965fa",
+          "operationName": "transfer",
+          "tags": [
+            ["busy_ns", "8125"],
+            ["idle_ns", "3417"],
+            ["to_address", "layer1qurswpc8qurswpc8qurswpc8qurswpc8r336vn"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["code.lineno", "354"],
+            ["amount", "2500uslay,"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["thread.id", "31"],
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826675176,
+          "duration": 12
+        },
+        {
+          "traceId": "e3af72b1566efadd0f114b09ea7f15f5",
+          "spanId": "76cfe6f7914f0488",
+          "parentSpanId": "0665f5a7a486631c",
+          "operationName": "sm.process_msg",
+          "tags": [
+            ["code.namespace", "layer_app::sm"],
+            [
+              "success",
+              "[Event { ty: \"transfer\", attributes: [Attribute { key: \"recipient\", value: \"layer15ue3s00rgn3cd92qsh8gump9xddenlrlazc6k6\" }, Attribute { key: \"sender\", value: \"layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug\" }, Attribute { key: \"amount\", value: \"7890uslay\" }] }]"
+            ],
+            ["idle_ns", "3417"],
+            ["thread.id", "31"],
+            ["code.filepath", "packages/app/src/sm.rs"],
+            [
+              "msg",
+              "Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer15ue3s00rgn3cd92qsh8gump9xddenlrlazc6k6, amount: [Coin { 7890 \"uslay\" }] })"
+            ],
+            ["busy_ns", "18625"],
+            ["code.lineno", "139"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826675203,
+          "duration": 22
+        },
+        {
+          "traceId": "e3af72b1566efadd0f114b09ea7f15f5",
+          "spanId": "d852e4606d1d1ecc",
+          "parentSpanId": "76cfe6f7914f0488",
+          "operationName": "transfer",
+          "tags": [
+            ["busy_ns", "6916"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["idle_ns", "2500"],
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["thread.id", "31"],
+            ["to_address", "layer15ue3s00rgn3cd92qsh8gump9xddenlrlazc6k6"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["code.lineno", "354"],
+            ["amount", "7890uslay,"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826675209,
+          "duration": 10
+        }
+      ]
+    },
+    {
+      "traceId": "6b1e223947febb8f94609b0611ecf0af",
+      "startTime": 1729004826058700,
+      "spans": [
+        {
+          "traceId": "6b1e223947febb8f94609b0611ecf0af",
+          "spanId": "c46f71a783c61fd6",
+          "parentSpanId": null,
+          "operationName": "abci_finalize_block",
+          "tags": [
+            ["code.filepath", "app/slay3rd/src/app.rs"],
+            ["busy_ns", "1202708"],
+            ["code.lineno", "200"],
+            [
+              "block_hash",
+              "09CDE154B91A67CF4B234EF9C8D52D50A4E3C7BD7EBF98123AC2AC266C267AC1"
+            ],
+            ["thread.id", "31"],
+            ["code.namespace", "slay3rd::app"],
+            ["idle_ns", "38667"],
+            ["height", "2828"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826058700,
+          "duration": 1238
+        },
+        {
+          "traceId": "6b1e223947febb8f94609b0611ecf0af",
+          "spanId": "2e8f487642b0c911",
+          "parentSpanId": "c46f71a783c61fd6",
+          "operationName": "finalize_block",
+          "tags": [
+            ["busy_ns", "991250"],
+            ["code.lineno", "377"],
+            ["block.time", "2024-10-15T15:07:05.744055922+00:00"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["block.nanos", "1729004825744055922"],
+            ["thread.id", "31"],
+            ["idle_ns", "19708"],
+            ["height", "2828"],
+            ["txs", "1"],
+            ["code.namespace", "layer_app::app"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826058888,
+          "duration": 1006
+        },
+        {
+          "traceId": "6b1e223947febb8f94609b0611ecf0af",
+          "spanId": "dca2447be17012f0",
+          "parentSpanId": "2e8f487642b0c911",
+          "operationName": "execute_tx",
+          "tags": [
+            ["height", "2828"],
+            [
+              "tx",
+              "Signed(SignedTx { msgs: [Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1yuq5ugzgxpuefetqps6gyvq7urgs67dgtwk8lu, amount: [Coin { 7890 \"uslay\" }] })], signer: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, signing_info: SigningInfo { message_hash: Binary(0949bf8546006a54ea667c1cd0451b469cac672367fac58bd3ebfe2bd447abc9), sequence: 1, pubkey: Some(Secp256k1(Binary(034f04181eeba35391b858633a765c4a0c189697b40d216354d50890d350c70290))), signature: Binary(2a2ef4fae250e491aa8754b2bb90ab24d1fa1cf408764697b2943c7cd46cb15b70e3b13f10c7a7905cff440510a5ec65140f236f735ee08195f9125e790ccd1d) }, fee: FeeInfo { fee: Some(Coin { 2500 \"uslay\" }), gas_limit: 100000 }, timeout_height: None })"
+            ],
+            ["busy_ns", "777542"],
+            ["code.lineno", "293"],
+            [
+              "tx_hash",
+              "BA62252D9EAD3FC4A03B15C4335065F61D45F7E84B68C2FD4AB7E6CF534C3A56"
+            ],
+            ["idle_ns", "33958"],
+            ["code.filepath", "packages/app/src/app.rs"],
+            ["code.namespace", "layer_app::app"],
+            ["thread.id", "31"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826058963,
+          "duration": 812
+        },
+        {
+          "traceId": "6b1e223947febb8f94609b0611ecf0af",
+          "spanId": "62de1e491bb76dfe",
+          "parentSpanId": "dca2447be17012f0",
+          "operationName": "auth.validate_tx",
+          "tags": [
+            ["thread.id", "31"],
+            ["code.namespace", "layer_app::auth::keeper"],
+            ["validate_sig", "true"],
+            ["busy_ns", "645083"],
+            ["idle_ns", "3375"],
+            ["code.lineno", "71"],
+            ["code.filepath", "packages/app/src/auth/keeper.rs"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826058998,
+          "duration": 650
+        },
+        {
+          "traceId": "6b1e223947febb8f94609b0611ecf0af",
+          "spanId": "81be409f01325f76",
+          "parentSpanId": "62de1e491bb76dfe",
+          "operationName": "validate_signature",
+          "tags": [
+            ["busy_ns", "512750"],
+            ["code.namespace", "layer_std::pubkey"],
+            ["code.lineno", "29"],
+            ["code.filepath", "packages/std/src/pubkey.rs"],
+            ["idle_ns", "6333"],
+            ["thread.id", "31"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826059052,
+          "duration": 520
+        },
+        {
+          "traceId": "6b1e223947febb8f94609b0611ecf0af",
+          "spanId": "a96d3fc2536eab6d",
+          "parentSpanId": "62de1e491bb76dfe",
+          "operationName": "transfer",
+          "tags": [
+            ["amount", "2500uslay,"],
+            ["code.lineno", "354"],
+            ["to_address", "layer1qurswpc8qurswpc8qurswpc8qurswpc8r336vn"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["thread.id", "31"],
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["idle_ns", "7250"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["busy_ns", "20459"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826059609,
+          "duration": 28
+        },
+        {
+          "traceId": "6b1e223947febb8f94609b0611ecf0af",
+          "spanId": "2e6eaf27669ba3f3",
+          "parentSpanId": "dca2447be17012f0",
+          "operationName": "sm.process_msg",
+          "tags": [
+            ["code.filepath", "packages/app/src/sm.rs"],
+            ["busy_ns", "58292"],
+            ["thread.id", "31"],
+            [
+              "msg",
+              "Bank(Send { sender: layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug, recipient: layer1yuq5ugzgxpuefetqps6gyvq7urgs67dgtwk8lu, amount: [Coin { 7890 \"uslay\" }] })"
+            ],
+            ["code.namespace", "layer_app::sm"],
+            ["idle_ns", "9791"],
+            ["code.lineno", "139"],
+            [
+              "success",
+              "[Event { ty: \"transfer\", attributes: [Attribute { key: \"recipient\", value: \"layer1yuq5ugzgxpuefetqps6gyvq7urgs67dgtwk8lu\" }, Attribute { key: \"sender\", value: \"layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug\" }, Attribute { key: \"amount\", value: \"7890uslay\" }] }]"
+            ],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826059676,
+          "duration": 68
+        },
+        {
+          "traceId": "6b1e223947febb8f94609b0611ecf0af",
+          "spanId": "46d1c62cb12ca751",
+          "parentSpanId": "2e6eaf27669ba3f3",
+          "operationName": "transfer",
+          "tags": [
+            ["busy_ns", "18958"],
+            ["code.namespace", "layer_app::bank::keeper"],
+            ["thread.id", "31"],
+            ["amount", "7890uslay,"],
+            ["to_address", "layer1yuq5ugzgxpuefetqps6gyvq7urgs67dgtwk8lu"],
+            ["code.lineno", "354"],
+            ["code.filepath", "packages/app/src/bank/keeper.rs"],
+            ["idle_ns", "6042"],
+            ["from_address", "layer1pkptre7fdkl6gfrzlesjjvhxhlc3r4gmt53rug"],
+            ["otel.library.name", "opentelemetry-jaeger"],
+            ["otel.library.version", "0.18.0"],
+            ["internal.span.format", "jaeger"]
+          ],
+          "startTime": 1729004826059694,
+          "duration": 25
+        }
+      ]
     }
   ]
 }

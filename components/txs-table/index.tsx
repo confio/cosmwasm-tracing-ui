@@ -2,7 +2,7 @@
 
 import { useTxs } from "@/hooks/api";
 import { useDebounce } from "@/hooks/use-debounce";
-import { Tx } from "@/types/txs";
+import { Span, Tx } from "@/types/txs";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -16,10 +16,11 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { DataTable } from "../data-table";
 import { DataTableColumnHeader } from "../data-table/data-table-column-header";
 import { DataTablePagination } from "../data-table/data-table-pagination";
+import { Button } from "../ui/button";
 import { txsColumns } from "./txs-columns";
 import { DataTableToolbar } from "./txs-table-toolbar";
 
@@ -36,7 +37,7 @@ export function TxsTable() {
   const operationName = useDebounce(
     typeof operationNameValue === "string" && operationNameValue.length
       ? operationNameValue
-      : "execute_tx",
+      : "",
   );
 
   const tags =
@@ -52,18 +53,31 @@ export function TxsTable() {
       ),
       cell: ({ row }) => (
         <div className="max-w-[500px] truncate font-medium">
-          {(row.getValue("tags") as Map<string, string>).get(tagKey)}
+          {(row.getValue("spans") as readonly Span[])
+            .map((span) => span.tags.get(tagKey))
+            .filter((span) => !!span)
+            .join(" | ")}
         </div>
       ),
       //NOTE - Don't UI filter, query API
       filterFn: () => true,
+      enableSorting: false,
     }),
   );
 
   const columns = [...txsColumns, ...tagsColumns];
 
-  const { isPending, error, data: txs } = useTxs(operationName, tags);
-  const data = (txs ?? []) as Tx[];
+  const {
+    isPending,
+    error,
+    data: queriedData,
+    fetchNextPage,
+  } = useTxs(operationName, tags);
+
+  const data = useMemo(
+    () => (queriedData?.pages.flatMap((v) => v) ?? []) as Tx[],
+    [queriedData?.pages],
+  );
 
   const table = useReactTable({
     columns,
@@ -80,6 +94,10 @@ export function TxsTable() {
     getSortedRowModel: getSortedRowModel(),
   });
 
+  useEffect(() => {
+    table.setPageSize(15);
+  }, [table]);
+
   return (
     <div className="space-y-4">
       <DataTableToolbar table={table} />
@@ -90,7 +108,16 @@ export function TxsTable() {
           rowLink={{ url: "/", field: "traceId" }}
         />
       </div>
-      <DataTablePagination table={table} />
+      <div className="flex items-center justify-between flex-wrap">
+        {/* NOTE - this is a hack to center the "Load more" Button below */}
+        <div className="invisible">
+          <DataTablePagination table={table} />
+        </div>
+        <Button variant="outline" onClick={() => fetchNextPage()}>
+          Load more
+        </Button>
+        <DataTablePagination table={table} />
+      </div>
     </div>
   );
 }

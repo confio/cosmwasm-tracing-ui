@@ -2,7 +2,6 @@
 
 import { useTx } from "@/hooks/api";
 import { sequenceDiagramFromSpans } from "@/lib/mermaid";
-import { Tx } from "@/types/txs";
 import Mermaid from "./mermaid";
 
 type TxDataProps = {
@@ -11,14 +10,15 @@ type TxDataProps = {
 };
 
 export default function TxData({ txId, spanId }: TxDataProps) {
-  const { isPending, isFetching, error, data: spans } = useTx(txId);
+  const { isPending, isFetching, error, data: tx } = useTx(txId);
 
   if (isPending) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
+  if (!tx) return "Couldn't find a Tx with id: " + txId;
 
-  const mermaidChart = sequenceDiagramFromSpans(spans);
+  const mermaidChart = sequenceDiagramFromSpans(tx.spans);
 
-  const span = spans.find((span: Tx) => span.spanId === spanId);
+  const span = tx.spans.find((span) => span.spanId === spanId);
 
   return (
     <div>

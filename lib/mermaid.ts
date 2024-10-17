@@ -1,14 +1,14 @@
-import { Tx } from "@/types/txs";
+import { Span } from "@/types/txs";
 import { getAddressType } from "./chain";
 
 type TreeNode = {
   id: string;
   parentId: string | null;
   children: Set<TreeNode>;
-  span: Tx;
+  span: Span;
 };
 
-export function flowchartFromSpans(spans: Readonly<Array<Tx>>) {
+export function flowchartFromSpans(spans: Readonly<Array<Span>>) {
   const spanParentMap = new Map<string, string | null>();
 
   for (const span of spans) {
@@ -62,7 +62,7 @@ export function flowchartFromSpans(spans: Readonly<Array<Tx>>) {
   return chart;
 }
 
-export function sequenceDiagramFromSpans(spans: Readonly<Array<Tx>>) {
+export function sequenceDiagramFromSpans(spans: Readonly<Array<Span>>) {
   let chart = "sequenceDiagram";
 
   for (const span of spans) {

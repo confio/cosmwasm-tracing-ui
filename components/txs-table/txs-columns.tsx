@@ -4,52 +4,56 @@ import { DataTableColumnHeader } from "../data-table/data-table-column-header";
 
 export const txsColumns: ColumnDef<Tx>[] = [
   {
+    accessorKey: "startTime",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Start time" />
+    ),
+    cell: ({ row }) => {
+      const startDate = new Date(Number(row.getValue("startTime")) / 1000);
+      return (
+        <div className="max-w-[500px] font-mono text-xs">
+          {startDate.toLocaleTimeString() +
+            " - " +
+            startDate.toLocaleDateString()}
+        </div>
+      );
+    },
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
     accessorKey: "traceId",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Trace" />
     ),
     cell: ({ row }) => (
-      <div className="max-w-[500px] font-medium">{row.getValue("traceId")}</div>
+      <div className="max-w-[500px] font-mono font-bold">
+        {row.getValue("traceId")}
+      </div>
     ),
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "spanId",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Span" />
-    ),
-    cell: ({ row }) => (
-      <div className="max-w-[500px] font-medium">{row.getValue("spanId")}</div>
-    ),
-    enableSorting: false,
+    accessorKey: "spans",
+    header: () => null,
+    cell: () => null,
+    //NOTE - Don't UI filter, query API
+    filterFn: () => true,
     enableHiding: false,
   },
   {
     accessorKey: "operationName",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Operation" />
-    ),
-    cell: ({ row }) => (
-      <div className="max-w-[500px] font-medium">
-        {row.getValue("operationName")}
-      </div>
-    ),
+    header: () => null,
+    cell: () => null,
     //NOTE - Don't UI filter, query API
     filterFn: () => true,
+    enableHiding: false,
   },
   {
     accessorKey: "tags",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tags" />
-    ),
-    cell: ({ row }) => (
-      <div className="max-w-[500px] truncate font-medium">
-        {Array.from((row.getValue("tags") as Map<string, string>).keys()).join(
-          ", ",
-        )}
-      </div>
-    ),
+    header: () => null,
+    cell: () => null,
     //NOTE - Don't UI filter, query API
     filterFn: () => true,
     enableHiding: false,

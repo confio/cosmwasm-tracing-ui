@@ -1,8 +1,15 @@
 import TxData from "@/components/tx-data";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
+const traceIdLength = 32;
 
-export default function Tx({ params }: { params: { span: string[] } }) {
-  const [txId, spanId] = params.span;
+export default function Tx({ params }: { params: { span: [string] } }) {
+  //NOTE - the params are parsed because this catch-all route merges both traceId and spanId
+  const [txId, spanId] =
+    params.span[0].length > traceIdLength
+      ? [
+          params.span[0].slice(0, traceIdLength),
+          params.span[0].slice(traceIdLength),
+        ]
+      : [params.span[0]];
 
   return (
     <Sheet defaultOpen>

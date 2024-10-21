@@ -1,4 +1,6 @@
 import TxData from "@/components/tx-data";
+import TxSheet from "@/components/tx-data/tx-sheet";
+
 const traceIdLength = 32;
 
 export default function Tx({ params }: { params: { span: [string] } }) {
@@ -12,13 +14,11 @@ export default function Tx({ params }: { params: { span: [string] } }) {
       : [params.span[0]];
 
   return (
-    <Sheet defaultOpen>
-      <SheetContent className="min-w-[80%]">
-        <div>
-          <div>Transaction {txId}</div>
-          <TxData txId={txId} spanId={spanId} />
-        </div>
-      </SheetContent>
-    </Sheet>
+    <TxSheet>
+      <div>
+        <div>Transaction {txId}</div>
+        <TxData txId={txId} spanId={spanId} />
+      </div>
+    </TxSheet>
   );
 }

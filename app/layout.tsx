@@ -29,14 +29,14 @@ export default function RootLayout({ children, span }: RootLayoutProps) {
                   width={40}
                   height={40}
                 />
-                <h2
+                <h1
                   className={cn(
                     "text-3xl font-bold tracking-tight",
                     fontIceland.className,
                   )}
                 >
                   CosmWasm Tracing UI
-                </h2>
+                </h1>
               </div>
               {children}
             </div>

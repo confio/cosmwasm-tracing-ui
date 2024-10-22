@@ -7,10 +7,5 @@ export default function Tx({
 }) {
   const [txId, spanId] = params.span;
 
-  return (
-    <div>
-      <div>Transaction {txId}</div>
-      <TxData txId={txId} spanId={spanId} />
-    </div>
-  );
+  return <TxData txId={txId} spanId={spanId} />;
 }

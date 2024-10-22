@@ -2,6 +2,7 @@
 
 import { useTxs } from "@/hooks/api";
 import { useDebounce } from "@/hooks/use-debounce";
+import { getFiltersFromParams, setParamsFromFilters } from "@/lib/params";
 import { Span, Tx } from "@/types/txs";
 import {
   ColumnDef,
@@ -16,6 +17,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { DataTable } from "../data-table";
 import { DataTableColumnHeader } from "../data-table/data-table-column-header";
@@ -25,10 +27,13 @@ import { txsColumns } from "./txs-columns";
 import { DataTableToolbar } from "./txs-table-toolbar";
 
 export function TxsTable() {
+  const params = useSearchParams();
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
     tags: false,
   });
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
+    getFiltersFromParams(params),
+  );
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const operationNameValue = columnFilters.find(
@@ -100,6 +105,10 @@ export function TxsTable() {
   useEffect(() => {
     table.setPageSize(15);
   }, [table]);
+
+  useEffect(() => {
+    setParamsFromFilters(columnFilters);
+  }, [columnFilters]);
 
   return (
     <div className="space-y-4">

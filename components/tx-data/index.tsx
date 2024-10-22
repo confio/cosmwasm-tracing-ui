@@ -5,6 +5,7 @@ import { sequenceDiagramFromSpans } from "@/lib/mermaid";
 import { useState } from "react";
 import Mermaid from "../mermaid";
 import { Badge } from "../ui/badge";
+import SpanDetails from "./span-details";
 
 type TxDataProps = {
   txId: string;
@@ -32,15 +33,7 @@ export default function TxData({ txId, spanId }: TxDataProps) {
       {!isFetching ? (
         <Mermaid chart={mermaidChart} setSpanId={setSpanIdToFind} />
       ) : null}
-      {span ? (
-        <pre>
-          {JSON.stringify(
-            Object.fromEntries(Array.from(span.tags).sort()),
-            null,
-            2,
-          )}
-        </pre>
-      ) : null}
+      {span ? <SpanDetails span={span} /> : null}
     </div>
   );
 }

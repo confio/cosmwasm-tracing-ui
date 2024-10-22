@@ -16,7 +16,9 @@ export default function TxSheet({ children }: PropsWithChildren) {
         }
       }}
     >
-      <SheetContent className="min-w-[80%]">{children}</SheetContent>
+      <SheetContent className="min-w-[80%] overflow-auto">
+        {children}
+      </SheetContent>
     </Sheet>
   );
 }

@@ -1,7 +1,9 @@
 import { Span } from "@/types/txs";
 
-export const getParsedSpanMap = ({ tags }: Span) => {
+export const getParsedSpanMap = ({ operationName, startTime, tags }: Span) => {
   const map = new Map<string, string>();
+
+  map.set("Operation", operationName);
 
   const txHash = tags.get("tx_hash");
   txHash && map.set("Tx Hash", txHash);
@@ -29,6 +31,12 @@ export const getParsedSpanMap = ({ tags }: Span) => {
 
   const gasLimit = tx?.match(/gas_limit: (\w+)/)?.[1];
   gasLimit && map.set("Gas limit", gasLimit);
+
+  const startDate = new Date(startTime / 1000);
+  map.set(
+    "Start time",
+    `${startDate.toLocaleTimeString()} - ${startDate.toLocaleDateString()}`,
+  );
 
   return map;
 };

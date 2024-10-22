@@ -22,7 +22,7 @@ export default function RootLayout({ children, span }: RootLayoutProps) {
         <Providers>
           <>
             <div className="h-full flex-1 flex-col space-y-8 p-6 flex">
-              <div className="flex gap-4 items-center">
+              <a href="/" className="flex gap-4 items-center">
                 <Image
                   alt="Tracing logo"
                   src="/logo.svg"
@@ -37,7 +37,7 @@ export default function RootLayout({ children, span }: RootLayoutProps) {
                 >
                   CosmWasm Tracing UI
                 </h1>
-              </div>
+              </a>
               {children}
             </div>
             {span}

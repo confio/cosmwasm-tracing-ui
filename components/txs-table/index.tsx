@@ -52,11 +52,14 @@ export function TxsTable() {
         <DataTableColumnHeader column={column} title={tagKey} />
       ),
       cell: ({ row }) => (
-        <div className="max-w-[500px] truncate font-medium">
-          {(row.getValue("spans") as readonly Span[])
-            .map((span) => span.tags.get(tagKey))
-            .filter((span) => !!span)
-            .join(" | ")}
+        <div className="max-w-[400px] truncate font-medium">
+          {Array.from(
+            new Set(
+              (row.getValue("spans") as readonly Span[])
+                .map((span) => span.tags.get(tagKey))
+                .filter((span) => !!span),
+            ),
+          ).join(" | ")}
         </div>
       ),
       //NOTE - Don't UI filter, query API

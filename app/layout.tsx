@@ -1,3 +1,4 @@
+import { fontIceland, fontInter } from "@/lib/fonts";
 import Providers from "@/providers";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -18,7 +19,7 @@ type RootLayoutProps = PropsWithChildren & {
 export default function RootLayout({ children, span }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={fontInter.className}>
         <Providers>
           <>
             {children}

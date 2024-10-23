@@ -15,10 +15,7 @@ export default function Tx({ params }: { params: { span: [string] } }) {
 
   return (
     <TxSheet>
-      <div>
-        <div>Transaction {txId}</div>
-        <TxData txId={txId} spanId={spanId} />
-      </div>
+      <TxData txId={txId} spanId={spanId} />
     </TxSheet>
   );
 }

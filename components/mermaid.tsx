@@ -11,12 +11,13 @@ mermaid.initialize({
   sequence: { mirrorActors: false },
   theme: "base",
   themeVariables: {
-    background: "#fff",
-    mainBkg: "#fff",
-    primaryColor: "#fff",
-    textColor: "#171717",
-    lineColor: "#171717",
-    actorBorder: "#171717",
+    background: "#171717",
+    mainBkg: "#171717",
+    primaryColor: "#171717",
+    textColor: "#fff",
+    lineColor: "#fff",
+    actorTextColor: "#fff",
+    actorBorder: "#fff",
   },
   themeCSS: `
     .actor {
@@ -103,7 +104,12 @@ export default function Mermaid({ chart, setSpanId }: MermaidProps) {
   }, [pathname, renderStage, setSpanId]);
 
   return renderStage !== "server" ? (
-    <div className={cn("mermaid", renderStage !== "mermaid" && "hidden")}>
+    <div
+      className={cn(
+        "mermaid flex justify-center",
+        renderStage !== "mermaid" && "hidden",
+      )}
+    >
       {chart}
     </div>
   ) : null;

@@ -49,8 +49,8 @@ export function DataTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
   return (
-    <div className="flex justify-between">
-      <div className="flex flex-wrap gap-2">
+    <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center gap-2">
         <Select
           value={getSelectedValue(table)}
           onValueChange={(value) => {
@@ -73,7 +73,7 @@ export function DataTableToolbar<TData>({
             }
           }}
         >
-          <SelectTrigger className="w-[220px]">
+          <SelectTrigger className="w-[220px] h-[32px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

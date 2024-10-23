@@ -11,10 +11,10 @@ export const txsColumns: ColumnDef<Tx>[] = [
     cell: ({ row }) => {
       const startDate = new Date(Number(row.getValue("startTime")) / 1000);
       return (
-        <div className="max-w-[500px] font-mono text-xs">
-          {startDate.toLocaleTimeString() +
-            " - " +
-            startDate.toLocaleDateString()}
+        <div className="font-mono text-xs">
+          {startDate.toLocaleTimeString()}
+          <br />
+          {startDate.toLocaleDateString()}
         </div>
       );
     },
@@ -26,20 +26,17 @@ export const txsColumns: ColumnDef<Tx>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Trace" />
     ),
-    cell: ({ row }) => (
-      <div className="max-w-[500px] font-mono font-bold">
-        {row.getValue("traceId")}
-      </div>
-    ),
+    cell: ({ row }) => {
+      const traceId: string = row.getValue("traceId");
+      return (
+        <div className="font-mono">
+          <span className="font-bold">{traceId.slice(0, 4)}</span>
+          <span>{traceId.slice(4, 28)}</span>
+          <span className="font-bold">{traceId.slice(28)}</span>
+        </div>
+      );
+    },
     enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "spans",
-    header: () => null,
-    cell: () => null,
-    //NOTE - Don't UI filter, query API
-    filterFn: () => true,
     enableHiding: false,
   },
   {
@@ -55,6 +52,13 @@ export const txsColumns: ColumnDef<Tx>[] = [
     header: () => null,
     cell: () => null,
     //NOTE - Don't UI filter, query API
+    filterFn: () => true,
+    enableHiding: false,
+  },
+  {
+    accessorKey: "spans",
+    header: () => null,
+    cell: () => null,
     filterFn: () => true,
     enableHiding: false,
   },

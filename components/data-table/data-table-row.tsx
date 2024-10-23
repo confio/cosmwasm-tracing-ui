@@ -22,7 +22,11 @@ export function DataTableRow<TData>({
   return (
     <TableRow
       data-state={row.getIsSelected() && "selected"}
-      className={cn(rowLink && "hover:cursor-pointer")}
+      className={cn(
+        "bg-background hover:bg-secondary",
+        row.index % 2 !== 0 && "bg-card",
+        rowLink && "hover:cursor-pointer",
+      )}
       onClick={
         rowLink
           ? () => router.push(`${rowLink.url}${row.getValue(rowLink.field)}`)

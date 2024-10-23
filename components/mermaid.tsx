@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import mermaid from "mermaid";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 mermaid.initialize({
@@ -36,7 +37,13 @@ const htmlReplacer = {
     ] ?? "",
 };
 
-export default function Mermaid({ chart }: { chart: string }) {
+type MermaidProps = {
+  chart: string;
+  setSpanId: (spanId: string | undefined) => void;
+};
+
+export default function Mermaid({ chart, setSpanId }: MermaidProps) {
+  const pathname = usePathname();
   const [renderStage, setRenderStage] = useState<
     "server" | "browser" | "mermaid"
   >("server");
@@ -67,6 +74,25 @@ export default function Mermaid({ chart }: { chart: string }) {
             htmlReplacer.regex,
             htmlReplacer.fn,
           );
+
+          const span = msg.firstElementChild;
+          if (!span) {
+            continue;
+          }
+
+          const linkToSpan = span.getAttribute("href");
+          if (!linkToSpan) {
+            continue;
+          }
+
+          span.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            if (!pathname.endsWith(linkToSpan)) {
+              window.history.replaceState(null, "", linkToSpan);
+              setSpanId(linkToSpan.split("/").slice(-1)[0]);
+            }
+          });
         }
       }
 
@@ -74,7 +100,7 @@ export default function Mermaid({ chart }: { chart: string }) {
     });
 
     return () => clearInterval(interval);
-  }, [renderStage]);
+  }, [pathname, renderStage, setSpanId]);
 
   return renderStage !== "server" ? (
     <div className={cn("mermaid", renderStage !== "mermaid" && "hidden")}>

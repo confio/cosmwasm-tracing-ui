@@ -2,6 +2,7 @@ import { Span } from "@/types/txs";
 
 type Operation = {
   label: string;
+  isQuery: boolean;
   sender: string;
   recipient: string;
   traceId: string;
@@ -73,8 +74,11 @@ const parseActorFromBankSendRon = (
     return null;
   }
 
+  const isSimulation = bankSendRon.includes("Simulate(");
+
   return {
-    label: bankSendRon.includes("Simulate(") ? "💻🏦 Send" : "🏦 Send",
+    label: isSimulation ? "💻🏦 Send" : "🏦 Send",
+    isQuery: isSimulation,
     sender,
     recipient,
     traceId,
@@ -92,10 +96,11 @@ const parseActorFromWasmStoreCodeRon = (
     return null;
   }
 
+  const isSimulation = wasmStoreCodeRon.includes("Simulate(");
+
   return {
-    label: wasmStoreCodeRon.includes("Simulate(")
-      ? "💻🕸 Store code"
-      : "🕸 Store code",
+    label: isSimulation ? "💻🕸 Store code" : "🕸 Store code",
+    isQuery: isSimulation,
     sender,
     recipient: sender,
     traceId,
@@ -113,10 +118,11 @@ const parseActorFromWasmInstantiateRon = (
     return null;
   }
 
+  const isSimulation = wasmInstantiateRon.includes("Simulate(");
+
   return {
-    label: wasmInstantiateRon.includes("Simulate(")
-      ? "💻🕸 Instantiate"
-      : "🕸 Instantiate",
+    label: isSimulation ? "💻🕸 Instantiate" : "🕸 Instantiate",
+    isQuery: isSimulation,
     sender,
     recipient: sender,
     traceId,
@@ -134,8 +140,11 @@ const parseActorFromWasmMigrateRon = (
     return null;
   }
 
+  const isSimulation = wasmMigrateRon.includes("Simulate(");
+
   return {
-    label: wasmMigrateRon.includes("Simulate(") ? "💻🕸 Migrate" : "🕸 Migrate",
+    label: isSimulation ? "💻🕸 Migrate" : "🕸 Migrate",
+    isQuery: isSimulation,
     sender,
     recipient: sender,
     traceId,
@@ -154,8 +163,11 @@ const parseActorFromWasmExecuteRon = (
     return null;
   }
 
+  const isSimulation = wasmExecuteRon.includes("Simulate(");
+
   return {
-    label: wasmExecuteRon.includes("Simulate(") ? "💻🕸 Execute" : "🕸 Execute",
+    label: isSimulation ? "💻🕸 Execute" : "🕸 Execute",
+    isQuery: isSimulation,
     sender,
     recipient: contractAddr,
     traceId,
@@ -174,10 +186,11 @@ const parseActorFromWasmUpdateAdminRon = (
     return null;
   }
 
+  const isSimulation = wasmUpdateAdminRon.includes("Simulate(");
+
   return {
-    label: wasmUpdateAdminRon.includes("Simulate(")
-      ? "💻🕸 Update admin"
-      : "🕸 Update admin",
+    label: isSimulation ? "💻🕸 Update admin" : "🕸 Update admin",
+    isQuery: isSimulation,
     sender,
     recipient: contractAddr,
     traceId,

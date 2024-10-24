@@ -1,5 +1,6 @@
 import { Span } from "@/types/txs";
 import { getAddressType } from "./chain";
+import { getActorsFromOperations, getOperationsFromSpans } from "./parse-ron";
 
 type TreeNode = {
   id: string;
@@ -65,22 +66,15 @@ export function flowchartFromSpans(spans: Readonly<Array<Span>>) {
 export function sequenceDiagramFromSpans(spans: Readonly<Array<Span>>) {
   let chart = "sequenceDiagram";
 
-  for (const span of spans) {
-    const tx = span.tags.get("tx");
+  const operations = getOperationsFromSpans(spans);
+  const actors = getActorsFromOperations(operations);
 
-    if (!tx || !tx.includes("Bank(Send")) {
-      continue;
-    }
+  for (const actor of actors) {
+    chart += `\n${getActorBox(actor)}`;
+  }
 
-    const sender = tx.match(/sender: (\w+)/)?.[1] ?? "";
-    const recipient = tx.match(/recipient: (\w+)/)?.[1] ?? "";
-
-    chart += `\n${getActorBox(sender)}`;
-    chart += `\n${getActorBox(recipient)}`;
-
-    chart += `\n${sender}->>+${recipient}: <a href="/${span.traceId}/${span.spanId}">🏦 Send</a>`;
-
-    break;
+  for (const { label, sender, recipient, traceId, spanId } of operations) {
+    chart += `\n${sender}->>+${recipient}: <a href="/${traceId}/${spanId}">${label}</a>`;
   }
 
   return chart;

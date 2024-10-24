@@ -73,8 +73,9 @@ export function sequenceDiagramFromSpans(spans: Readonly<Array<Span>>) {
     chart += `\n${getActorBox(actor)}`;
   }
 
-  for (const { label, sender, recipient, traceId, spanId } of operations) {
-    chart += `\n${sender}->>+${recipient}: <a href="/${traceId}/${spanId}">${label}</a>`;
+  for (const operation of operations) {
+    const { label, isQuery, sender, recipient, traceId, spanId } = operation;
+    chart += `\n${sender}${isQuery ? "-" : ""}->>+${recipient}: <a href="/${traceId}/${spanId}">${label}</a>`;
   }
 
   return chart;

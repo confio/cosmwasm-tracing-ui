@@ -35,6 +35,11 @@ export const getOperationsFromSpans = (
         case txRon.includes("Bank(Send"): {
           return parseActorFromBankSendRon(txRon, span);
         }
+        //NOTE - Avoids showing both execute_tx and sm.process_msg for wasm queries
+        case txRon.includes("Wasm(") &&
+          span.operationName === "sm.process_msg": {
+          return null;
+        }
         case txRon.includes("Wasm(StoreCode"): {
           return parseActorFromWasmStoreCodeRon(txRon, span);
         }

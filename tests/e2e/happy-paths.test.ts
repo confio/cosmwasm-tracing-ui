@@ -31,5 +31,5 @@ test("navigates to a correctly rendered tx detail", async ({ page }) => {
     page.getByText("layer1y6v4dtfpu5zatqgv8u7cnfwrg9cvr3chvqkv0a"),
   ).toHaveCount(1);
 
-  await expect(page.getByText("Send")).toBeVisible();
+  await expect(page.getByText("Send").first()).toBeVisible();
 });

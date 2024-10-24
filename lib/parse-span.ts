@@ -11,7 +11,7 @@ export const getParsedSpanMap = ({ operationName, startTime, tags }: Span) => {
   const height = tags.get("height");
   height && map.set("Height", height);
 
-  const tx = tags.get("tx");
+  const tx = tags.get("request") || tags.get("msg") || tags.get("tx");
 
   const signer = tx?.match(/signer: (\w+)/)?.[1];
   signer && map.set("Signer", signer);
@@ -21,6 +21,9 @@ export const getParsedSpanMap = ({ operationName, startTime, tags }: Span) => {
 
   const recipient = tx?.match(/recipient: (\w+)/)?.[1];
   recipient && map.set("Recipient", recipient);
+
+  const contract_addr = tx?.match(/contract_addr: (\w+)/)?.[1];
+  contract_addr && map.set("Contract", contract_addr);
 
   const [, amount, denom] = tx?.match(/amount: \[Coin { (\w+) \"(\w+)/) ?? [];
   amount && denom && map.set("Amount", `${amount} ${denom}`);

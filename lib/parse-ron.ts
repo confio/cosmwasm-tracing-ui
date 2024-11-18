@@ -33,6 +33,11 @@ export const getOperationsFromSpans = (
       }
 
       switch (true) {
+        //NOTE - Avoids showing both execute_tx and sm.process_msg for bank queries
+        case txRon.includes("Bank(") &&
+          span.operationName === "sm.process_msg": {
+          return null;
+        }
         case txRon.includes("Bank(Send"): {
           return parseActorFromBankSendRon(txRon, span);
         }

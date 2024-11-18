@@ -15,26 +15,30 @@ import { DataTableKvFilter } from "../data-table/data-table-kv-filter";
 import { DataTableViewOptions } from "../data-table/data-table-view-options";
 
 const getSelectedValue = <TData,>(table: Table<TData>) => {
-  if (
-    !table.getColumn("operationName")?.getFilterValue() &&
-    !table.getColumn("tags")?.getFilterValue()
-  ) {
-    return "empty";
-  }
-
-  if ((table.getColumn("operationName")?.getFilterValue() as string) ?? "") {
-    return "custom";
-  }
-
+  const operationName = table.getColumn("operationName")?.getFilterValue() as
+    | string
+    | undefined;
   const tags = table.getColumn("tags")?.getFilterValue() as
     | Map<string, string>
     | undefined;
 
-  if (tags?.size === 1 && tags?.get("raw_tx") === "*") {
+  if (!operationName && !tags) {
+    return "empty";
+  }
+
+  if (
+    operationName === "query" &&
+    tags?.size === 1 &&
+    tags?.get("request") === "*Bank(Send*"
+  ) {
     return "simulations";
   }
 
-  if (tags?.size === 1 && tags?.get("tx_hash") === "*") {
+  if (
+    operationName === "execute_tx" &&
+    tags?.size === 1 &&
+    tags?.get("tx") === "*Wasm(*"
+  ) {
     return "broadcasted";
   }
 
@@ -56,15 +60,17 @@ export function DataTableToolbar<TData>({
           onValueChange={(value) => {
             switch (value) {
               case "simulations": {
+                table.getColumn("operationName")?.setFilterValue("query");
                 table
                   .getColumn("tags")
-                  ?.setFilterValue(new Map([["raw_tx", "*"]]));
+                  ?.setFilterValue(new Map([["request", "*Bank(Send*"]]));
                 break;
               }
               case "broadcasted": {
+                table.getColumn("operationName")?.setFilterValue("execute_tx");
                 table
                   .getColumn("tags")
-                  ?.setFilterValue(new Map([["tx_hash", "*"]]));
+                  ?.setFilterValue(new Map([["tx", "*Wasm(*"]]));
                 break;
               }
               default: {
@@ -95,10 +101,8 @@ export function DataTableToolbar<TData>({
               >
                 Custom filter
               </SelectItem>
-              <SelectItem value="simulations">Failed simulations</SelectItem>
-              <SelectItem value="broadcasted">
-                Broadcasted transactions
-              </SelectItem>
+              <SelectItem value="simulations">Sim. Bank Send</SelectItem>
+              <SelectItem value="broadcasted">Execute WASM tx</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

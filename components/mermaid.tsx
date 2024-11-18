@@ -18,6 +18,7 @@ mermaid.initialize({
     lineColor: "#fff",
     actorTextColor: "#fff",
     actorBorder: "#fff",
+    activationBkgColor: "#fff",
   },
   themeCSS: `
     .actor {

@@ -76,6 +76,12 @@ export function sequenceDiagramFromSpans(spans: Readonly<Array<Span>>) {
   for (const operation of operations) {
     const { label, isQuery, sender, recipient, traceId, spanId } = operation;
     chart += `\n${sender}${isQuery ? "-" : ""}->>+${recipient}: <a href="/${traceId}/${spanId}">${label}</a>`;
+
+    if (isQuery) {
+      chart += `\nactivate ${recipient}`;
+      chart += `\n${recipient}-->>+${sender}: <a class="hidden">response placeholder</a>`;
+      chart += `\ndeactivate ${recipient}`;
+    }
   }
 
   return chart;
